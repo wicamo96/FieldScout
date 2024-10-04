@@ -94,7 +94,7 @@ namespace FieldScout.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"UPDATE Facilities
-                                        SET Name = @Name,
+                                        SET Name = @Name
                                         WHERE Id = @Id";
                     DbUtils.AddParameter(cmd, "Name", facility.Name);
                     DbUtils.AddParameter(cmd, "Id", facility.Id);
