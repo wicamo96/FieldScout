@@ -16,6 +16,7 @@ namespace FieldScout
             builder.Services.AddTransient<IFacilitiesRepository,  FacilitiesRepository>();
             builder.Services.AddTransient<IHousesRepository, HousesRepository>();
             builder.Services.AddTransient<IPestsRepository, PestsRepository>();
+            builder.Services.AddTransient<IBaysRepository, BaysRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
