@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout.csproj": {}
+    "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\FieldScout.csproj": {}
   },
   "projects": {
-    "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout.csproj": {
+    "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\FieldScout.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout.csproj",
+        "projectUniqueName": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\FieldScout.csproj",
         "projectName": "FieldScout",
-        "projectPath": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout.csproj",
+        "projectPath": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\FieldScout.csproj",
         "packagesPath": "C:\\Users\\willc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\obj\\",
+        "outputPath": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\willc\\AppData\\Roaming\\NuGet\\NuGet.Config",
