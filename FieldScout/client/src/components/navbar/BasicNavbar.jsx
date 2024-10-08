@@ -9,7 +9,6 @@ import {
 
 export const BasicNavbar = () => {
 
-
   return (
     <div>
       <Navbar container='fluid'>

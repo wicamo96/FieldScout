@@ -11,9 +11,11 @@ namespace FieldScout.Controllers
     public class FacilitiesController : ControllerBase
     {
         private readonly IFacilitiesRepository _facilitiesRepository;
-        public FacilitiesController(IFacilitiesRepository facilitiesRepository)
+        private readonly IHousesRepository _housesRepository;
+        public FacilitiesController(IFacilitiesRepository facilitiesRepository, IHousesRepository housesRepository)
         {
             _facilitiesRepository = facilitiesRepository;
+            _housesRepository = housesRepository;
         }
         // GET: api/<FacilitiesController>
         [HttpGet]
@@ -43,6 +45,27 @@ namespace FieldScout.Controllers
                 return NotFound();
             }
 
+            return Ok(facility);
+        }
+
+        [HttpGet("GetByIdWithHouses")]
+        public IActionResult GetByIdWithHouses(int facilityId)
+        {
+            var facility = _facilitiesRepository.GetById(facilityId);
+            if (facility == null)
+            {
+                return NotFound();
+            }
+
+            var houses = _housesRepository.GetByFacilityId(facilityId);
+            if (houses == null)
+            {
+                return NotFound();
+            }
+
+            facility.Houses = new List<Houses>();
+
+            houses.ForEach(house => facility.Houses.Add(house));
             return Ok(facility);
         }
 
