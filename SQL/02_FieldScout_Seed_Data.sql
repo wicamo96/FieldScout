@@ -20,8 +20,8 @@ INSERT INTO Bays (name) VALUES
 
 INSERT INTO HouseBays (bayId, houseId) VALUES
 (1, 1),
-(1, 2),
-(2, 3);
+(2, 2),
+(3, 3);
 
 INSERT INTO BayDivisions (name, bayId) VALUES
 ('Division A', 1),
