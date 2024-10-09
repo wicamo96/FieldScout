@@ -4,6 +4,7 @@ import { getByIdWithHouses } from "../../services/FacilityServices.jsx"
 import { Modal } from "reactstrap"
 import { addHouse, deleteHouse, editHouse } from "../../services/HousesService.jsx"
 import { addHouseToFacility, deleteFacilityHouse } from "../../services/FacilityHousesService.jsx"
+import { Link } from "react-router-dom"
 
 export const GreenhouseManagement = ({ currentUser }) => {
     const [houses, setHouses] = useState([])
@@ -96,7 +97,7 @@ export const GreenhouseManagement = ({ currentUser }) => {
                     {houses.map(house => {
                         return (
                             <tr value={house.id}>
-                                <td>{house.name}</td>
+                                <td><Link to={{pathname: `/greenhouseManagement/${house.id}`, state: { house: house}}}>{house.name}</Link></td>
                                 <td>
                                     <button onClick={() => toggleEdit(house)}><i className="fa-regular fa-pen-to-square"></i></button>
                                     <Modal isOpen={editModal} toggle={() => toggleEdit(house)}>

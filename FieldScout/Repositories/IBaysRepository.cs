@@ -10,5 +10,6 @@ namespace FieldScout.Repositories
         Bays GetById(int id);
         Bays GetByName(string name);
         void Update(Bays bay);
+        List<Bays> GetByHouseId(int houseId);
     }
 }

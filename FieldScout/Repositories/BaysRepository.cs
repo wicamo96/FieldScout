@@ -148,5 +148,37 @@ namespace FieldScout.Repositories
                 }
             }
         }
+
+        public List<Bays> GetByHouseId(int houseId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT b.Id AS BayId, b.Name AS BayName
+                                        FROM Bays b
+                                        LEFT JOIN HouseBays hb ON hb.BayId = b.Id
+                                        WHERE hb.HouseId = @Id";
+                    DbUtils.AddParameter(cmd, "Id", houseId);
+
+                    List<Bays> bays = new List<Bays>();
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        bays.Add(new Bays()
+                        {
+                            Id = DbUtils.GetInt(reader, "BayId"),
+                            Name = DbUtils.GetString(reader, "BayName")
+                        });
+                    }
+
+                    reader.Close();
+
+                    return bays;
+                }
+            }
+        }
     }
 }
