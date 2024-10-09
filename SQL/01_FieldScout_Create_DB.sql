@@ -105,5 +105,5 @@ GO
 ALTER TABLE [FacilityHouses] ADD FOREIGN KEY ([HouseId]) REFERENCES [Houses] ([Id])
 GO
 
-ALTER TABLE [FacilityHouses] ADD FOREIGN KEY ([Id]) REFERENCES [Facilities] ([Id])
+ALTER TABLE [FacilityHouses] ADD FOREIGN KEY ([FacilityId]) REFERENCES [Facilities] ([Id])
 GO
