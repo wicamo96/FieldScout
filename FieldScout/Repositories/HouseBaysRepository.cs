@@ -18,7 +18,7 @@ namespace FieldScout.Repositories
                                         FROM HouseBays";
 
                     var reader = cmd.ExecuteReader();
-                    var houseBays = new List<HouseBays>();
+                    List<HouseBays> houseBays = new List<HouseBays>();
 
                     while (reader.Read())
                     {

@@ -16,13 +16,18 @@ export const GreenhouseManagement = ({ currentUser }) => {
     const [houseName, setHouseName] = useState("")
     const [houseId, setHouseId] = useState(0)
 
-    const toggle = () => setModal(!modal)
+    const toggle = () => {
+        setNewHouse("")
+        setModal(!modal)
+    }
+
     const toggleEdit = (houseObj) => {
         setHouseName(houseObj.name)
         setNewHouse(houseObj.name)
         setHouseId(houseObj.id)
         setEditModal(!editModal)
     }
+
     const toggleDelete = (houseObj) => {
         setHouseName(houseObj.name)
         setHouseId(houseObj.id)
@@ -76,7 +81,7 @@ export const GreenhouseManagement = ({ currentUser }) => {
         getFacilityHouses()
     }, [currentUser])
 
-    if (!houses) {
+    if (!houses.length) {
         return (<h1>Loading</h1>)
     }
     

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FieldScout.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using FieldScout.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +10,29 @@ namespace FieldScout.Controllers
     [ApiController]
     public class HouseBaysController : ControllerBase
     {
+        private readonly IHouseBaysRepository _houseBaysRepository;
+        public HouseBaysController(IHouseBaysRepository houseBaysRepository)
+        {
+            _houseBaysRepository = houseBaysRepository;
+        }
         // GET: api/<HouseBaysController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var houseBays = _houseBaysRepository.Get();
+            if (houseBays == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(houseBays);
+        }
+
+        [HttpPost("AddBayToHouse")]
+        public IActionResult AddBayToHouse(HouseBays houseBay)
+        {
+            _houseBaysRepository.AddBayToHouse(houseBay);
+            return NoContent();
         }
 
         // GET api/<HouseBaysController>/5
@@ -36,8 +56,10 @@ namespace FieldScout.Controllers
 
         // DELETE api/<HouseBaysController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _houseBaysRepository.Delete(id);
+            return NoContent();
         }
     }
 }
