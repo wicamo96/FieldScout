@@ -47,6 +47,18 @@ namespace FieldScout.Controllers
             return Ok(bay);
         }
 
+        [HttpGet("GetByHouseId")]
+        public IActionResult GetByHouseId(int houseId)
+        {
+            var bays = _baysRepository.GetByHouseId(houseId);
+            if (bays == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(bays);
+        }
+
         // POST api/<BaysController>
         [HttpPost]
         public IActionResult Post(Bays bay)

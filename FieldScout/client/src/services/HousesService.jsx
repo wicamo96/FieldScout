@@ -25,3 +25,7 @@ export const deleteHouse = (houseId) => {
         method: "DELETE"
     })
 }
+
+export const getHouseById = (houseId) => {
+    return fetch(`${baseUrl}/${houseId}`).then(res => res.json())
+}
