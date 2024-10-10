@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\baydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\baydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\controllers\\baydivisionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\controllers\\baydivisionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\ibaydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\ibaydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\controllers\\facilityhousescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\controllers\\facilityhousescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,7 +22,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "FacilityHousesRepository.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\FacilityHousesRepository.cs",
               "RelativeDocumentMoniker": "FieldScout\\Repositories\\FacilityHousesRepository.cs",
@@ -47,7 +35,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "FacilityHousesController.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Controllers\\FacilityHousesController.cs",
               "RelativeDocumentMoniker": "FieldScout\\Controllers\\FacilityHousesController.cs",
@@ -56,51 +44,6 @@
               "ViewState": "AQIAACwAAAAAAAAAAAAkwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T21:16:19.446Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 62,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IBayDivisionRepository.cs",
-              "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\IBayDivisionRepository.cs",
-              "RelativeDocumentMoniker": "FieldScout\\Repositories\\IBayDivisionRepository.cs",
-              "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\IBayDivisionRepository.cs",
-              "RelativeToolTip": "FieldScout\\Repositories\\IBayDivisionRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T15:09:53.415Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BayDivisionsController.cs",
-              "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Controllers\\BayDivisionsController.cs",
-              "RelativeDocumentMoniker": "FieldScout\\Controllers\\BayDivisionsController.cs",
-              "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Controllers\\BayDivisionsController.cs",
-              "RelativeToolTip": "FieldScout\\Controllers\\BayDivisionsController.cs",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAkwEkAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T15:03:03.581Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BayDivisionRepository.cs",
-              "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\BayDivisionRepository.cs",
-              "RelativeDocumentMoniker": "FieldScout\\Repositories\\BayDivisionRepository.cs",
-              "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\BayDivisionRepository.cs",
-              "RelativeToolTip": "FieldScout\\Repositories\\BayDivisionRepository.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAAwEEAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T14:51:55.252Z",
               "EditorCaption": ""
             }
           ]

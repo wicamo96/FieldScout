@@ -5,6 +5,7 @@ import { GreenhouseManagement } from "../components/greenhouseManagement/Greenho
 import { useEffect, useState } from "react"
 import { GreenhouseBays } from "../components/greenhouseManagement/GreenhouseBays.jsx"
 import { GreenhouseBayDivision } from "../components/greenhouseManagement/GreenhouseBayDivision.jsx"
+import { PestManagement } from "../components/pestManagement/PestManagement.jsx"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -33,6 +34,9 @@ export const ApplicationViews = () => {
                         <Route index element={<GreenhouseBays currentUser={currentUser} />} />
                         <Route path=":bId" element={<GreenhouseBayDivision currentUser={currentUser} />} />
                     </Route>
+                </Route>
+                <Route path="pests" >
+                    <Route index element={<PestManagement currentUser={currentUser} />} />
                 </Route>
             </Route>
         </Routes>
