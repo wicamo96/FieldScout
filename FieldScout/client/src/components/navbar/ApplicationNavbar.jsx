@@ -24,6 +24,11 @@ export const ApplicationNavbar = () => {
                     </NavLink>
                 </NavItem>
                 <NavItem>
+                    <NavLink href="/scouting">
+                        Scouting
+                    </NavLink>
+                </NavItem>
+                <NavItem>
                     <NavLink href="/login" onClick={() => {
                                                 localStorage.removeItem("fieldScout_user")
                     }}>

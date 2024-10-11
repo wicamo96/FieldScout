@@ -87,12 +87,10 @@ export const GreenhouseBays = ({ currentUser }) => {
         })
     }, [id])
 
-    if (!bayList.length) {
-        return (<div>Loading</div>)
-    }
-    
 
-    return (
+    return !bayList.length ?
+        <div>Loading</div>
+    :
         <>
             <h1>{house.name} Bays</h1>
             <Table>
@@ -201,5 +199,4 @@ export const GreenhouseBays = ({ currentUser }) => {
                 </Modal>
             </div>
         </>
-    )
 }

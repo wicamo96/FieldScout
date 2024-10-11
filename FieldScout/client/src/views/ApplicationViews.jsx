@@ -6,6 +6,8 @@ import { useEffect, useState } from "react"
 import { GreenhouseBays } from "../components/greenhouseManagement/GreenhouseBays.jsx"
 import { GreenhouseBayDivision } from "../components/greenhouseManagement/GreenhouseBayDivision.jsx"
 import { PestManagement } from "../components/pestManagement/PestManagement.jsx"
+import { ScoutingHouseList } from "../components/scouting/ScoutingHouseList.jsx"
+import { ScoutingBays } from "../components/scouting/ScoutingBays.jsx"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -37,6 +39,10 @@ export const ApplicationViews = () => {
                 </Route>
                 <Route path="pests" >
                     <Route index element={<PestManagement currentUser={currentUser} />} />
+                </Route>
+                <Route path="scouting">
+                    <Route index element={<ScoutingHouseList currentUser={currentUser} />} />
+                    <Route path=":shId" element={<ScoutingBays currentUser={currentUser} />} />
                 </Route>
             </Route>
         </Routes>

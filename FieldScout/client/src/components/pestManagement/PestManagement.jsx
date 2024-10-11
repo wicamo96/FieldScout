@@ -64,11 +64,10 @@ export const PestManagement = () => {
         getPestList()
     }, [])
 
-    if (!pestList.length > 0) {
-        return (<h1>Loading</h1>)
-    }
 
-    return (
+    return !pestList.length ?
+        <h1>Loading</h1>
+    :
         <>
             <h1>Pests</h1>
             <Table>
@@ -169,5 +168,4 @@ export const PestManagement = () => {
                 </Modal>
             </div>
         </>
-    )
 }

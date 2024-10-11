@@ -80,12 +80,10 @@ export const GreenhouseManagement = ({ currentUser }) => {
     useEffect(() => {
         getFacilityHouses()
     }, [currentUser])
-
-    if (!houses.length) {
-        return (<h1>Loading</h1>)
-    }
     
-    return (
+    return !houses.length ?
+        <h1>Loading</h1>
+    :
         <>
             <h1>{facility.name} Houses</h1>
             <Table>
@@ -186,5 +184,4 @@ export const GreenhouseManagement = ({ currentUser }) => {
                 </Modal>
             </div>
         </>
-    )
 }
