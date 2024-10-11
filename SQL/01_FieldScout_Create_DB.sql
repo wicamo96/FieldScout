@@ -77,7 +77,8 @@ CREATE TABLE [ScoutingReport] (
   [PestId] integer,
   [Pressure] nvarchar(255),
   [BayDivisionId] integer,
-  [Date] datetime
+  [Date] datetime,
+  [FacilityId] integer
 )
 GO
 
@@ -91,6 +92,9 @@ ALTER TABLE [ScoutingReport] ADD FOREIGN KEY ([PestId]) REFERENCES [Pests] ([Id]
 GO
 
 ALTER TABLE [ScoutingReport] ADD FOREIGN KEY ([BayDivisionId]) REFERENCES [BayDivisions] ([Id])
+GO
+
+ALTER TABLE [ScoutingReport] ADD FOREIGN KEY ([FacilityId]) REFERENCES [Facilities] ([Id])
 GO
 
 ALTER TABLE [BayDivisions] ADD FOREIGN KEY ([BayId]) REFERENCES [Bays] ([Id])
