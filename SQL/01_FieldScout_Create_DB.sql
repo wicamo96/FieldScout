@@ -78,7 +78,8 @@ CREATE TABLE [ScoutingReport] (
   [Pressure] nvarchar(255),
   [BayDivisionId] integer,
   [Date] datetime,
-  [FacilityId] integer
+  [FacilityId] integer,
+  [GrowingWeek] integer
 )
 GO
 
