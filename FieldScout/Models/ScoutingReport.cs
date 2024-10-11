@@ -8,5 +8,8 @@
         public string Pressure { get; set; }
         public int BayDivisionId { get; set; }
         public DateTime Date { get; set; }
+        public int FacilityId { get; set; }
+        public int GrowingWeek { get; set; }
+
     }
 }
