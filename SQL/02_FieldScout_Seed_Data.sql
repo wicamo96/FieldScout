@@ -40,7 +40,7 @@ INSERT INTO UserProfile (facilityId, name, email) VALUES
 (2, 'Jane Smith', 'jane@example.com'),
 (1, 'Emily Johnson', 'emily@example.com');
 
-INSERT INTO ScoutingReport (userProfileId, pestId, pressure, bayDivisionId, date) VALUES
-(1, 1, 'Low', 1, '2024-10-01 09:00:00'),
-(2, 2, 'High', 2, '2024-10-02 10:30:00'),
-(3, 3, 'Moderate', 1, '2024-10-03 11:15:00');
+INSERT INTO ScoutingReport (userProfileId, pestId, pressure, bayDivisionId, date, facilityId) VALUES
+(1, 1, 'Low', 1, '2024-10-01 09:00:00', 1),
+(2, 2, 'High', 2, '2024-10-02 10:30:00', 1),
+(3, 3, 'Moderate', 1, '2024-10-03 11:15:00', 1);
