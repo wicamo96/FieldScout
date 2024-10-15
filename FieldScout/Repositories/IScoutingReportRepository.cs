@@ -9,5 +9,7 @@ namespace FieldScout.Repositories
         List<ScoutingReport> Get(int facilityId);
         void Update(ScoutingReport scoutingReport);
         ScoutingReport GetById(int id);
+        List<ScoutingReport> GetBayScoutingReportByGrowingWeek(int growingWeek, int bayDivisionId);
+        List<Bays> ScoutingReportBayIds(int growingWeek, int houseId);
     }
 }

@@ -48,6 +48,47 @@ namespace FieldScout.Repositories
             }
         }
 
+        public List<ScoutingReport> GetBayScoutingReportByGrowingWeek(int growingWeek, int bayDivisionId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT Id, UserProfileId, PestId, Pressure, BayDivisionId, Date, FacilityId, GrowingWeek
+                                        FROM ScoutingReport
+                                        WHERE BayDivisionId = @BDId AND GrowingWeek = @GrowingWeek
+                                        ORDER BY PestId";
+
+                    DbUtils.AddParameter(cmd, "BDId", bayDivisionId);
+                    DbUtils.AddParameter(cmd, "GrowingWeek", growingWeek);
+
+                    var reader = cmd.ExecuteReader();
+                    var reports = new List<ScoutingReport>();
+
+                    while (reader.Read())
+                    {
+                        reports.Add(new ScoutingReport()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            PestId = DbUtils.GetInt(reader, "PestId"),
+                            Pressure = DbUtils.GetString(reader, "Pressure"),
+                            BayDivisionId = DbUtils.GetInt(reader, "BayDivisionId"),
+                            Date = DbUtils.GetDateTime(reader, "Date"),
+                            FacilityId = DbUtils.GetInt(reader, "FacilityId"),
+                            GrowingWeek = DbUtils.GetInt(reader, "GrowingWeek")
+                        });
+
+                    }
+
+                    reader.Close();
+
+                    return reports;
+                }
+            }
+        }
+
         public void Add(ScoutingReport scoutingReport)
         {
             using (var conn = Connection)
@@ -141,6 +182,41 @@ namespace FieldScout.Repositories
                     reader.Close();
 
                     return report;
+                }
+            }
+        }
+
+        public List<Bays> ScoutingReportBayIds(int growingWeek, int houseId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT DISTINCT b.Id AS BayId
+                                        FROM ScoutingReport s
+                                        LEFT JOIN BayDivisions bd ON bd.Id = s.BayDivisionId
+                                        LEFT JOIN Bays b ON b.Id = bd.BayId
+                                        LEFT JOIN HouseBays hb ON hb.BayId = b.Id
+                                        WHERE hb.HouseId = @HID AND GrowingWeek = @GWK";
+
+                    DbUtils.AddParameter(cmd, "HID", houseId);
+                    DbUtils.AddParameter(cmd, "@GWK", growingWeek);
+
+                    List<Bays> bayIds = new List<Bays>();
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        bayIds.Add(new Bays()
+                        {
+                            Id = DbUtils.GetInt(reader, "BayId")
+                        });
+                    }
+
+                    reader.Close();
+
+                    return bayIds;
                 }
             }
         }

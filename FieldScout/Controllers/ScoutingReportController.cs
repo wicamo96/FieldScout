@@ -2,6 +2,7 @@
 using FieldScout.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Composition;
 using System.Globalization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -73,6 +74,39 @@ namespace FieldScout.Controllers
         {
             _scoutingReportRepository.Delete(id);
             return NoContent();
+        }
+
+        [HttpGet("{bayDivisionId}/{growingWeek}")]
+        public IActionResult GetBayScoutingReportByGrowingWeek(int growingWeek, int bayDivisionId)
+        {
+            var reports = _scoutingReportRepository.GetBayScoutingReportByGrowingWeek(growingWeek, bayDivisionId);
+            if (reports == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(reports); 
+        }
+
+        [HttpGet("GetGrowingWeek")]
+        public IActionResult GetGrowingWeek()
+        {
+            Calendar calendar = CultureInfo.InvariantCulture.Calendar;
+            var GrowingWeek = calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            return Ok(GrowingWeek);
+        }
+
+        [HttpGet("ScoutingReportBayIds/{houseId}/{growingWeek}")]
+        public IActionResult ScoutingReportBayIds(int growingWeek, int houseId)
+        {
+            var bayIds = _scoutingReportRepository.ScoutingReportBayIds(growingWeek, houseId);
+
+            if (bayIds == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(bayIds);
         }
     }
 }

@@ -6,6 +6,7 @@ import { getBayById } from "../../services/BayServices.jsx"
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
 
 export const GreenhouseBayDivision = () => {
+    const [isLoading, setIsLoading] = useState(true)
     const [bayId, setBayId] = useState(0)
     const [houseId, setHouseId] = useState(0)
     const [bayDivisions, setBayDivisions] = useState([])
@@ -59,6 +60,10 @@ export const GreenhouseBayDivision = () => {
         })
     }, [houseId, bayId])
 
+    useEffect(() => {
+        setIsLoading(false)
+    }, [bayDivisions, houseName, bayName])
+
     const getBayDivisionsList = () => {
         getBayDivisionsByBayId(bayId).then(divArr => {
             setBayDivisions(divArr)
@@ -93,9 +98,11 @@ export const GreenhouseBayDivision = () => {
     }
 
     
+
+    
     
 
-    return (!bayDivisions.length && !houseName && !bayName) ?
+    return isLoading ?
             <h1>Loading</h1>
         :
             <>

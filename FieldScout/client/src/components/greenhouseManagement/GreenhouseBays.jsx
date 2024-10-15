@@ -7,6 +7,7 @@ import { addBayToHouse, deleteHouseBay } from "../../services/HouseBaysService.j
 
 export const GreenhouseBays = ({ currentUser }) => {
     const { id } = useParams()
+    const [isLoading, setIsLoading] = useState(true)
     const [bayList, setBayList] = useState([])
     const [house, setHouse] = useState({})
     const [modal, setModal] = useState(false)
@@ -37,7 +38,7 @@ export const GreenhouseBays = ({ currentUser }) => {
     const getBaysList = () => {
         getBaysByHouseId(id).then(bayArr => {
             setBayList(bayArr)
-        })
+        }).then(setIsLoading(false))
     }
 
     const addBayToTables = () => {
@@ -88,7 +89,7 @@ export const GreenhouseBays = ({ currentUser }) => {
     }, [id])
 
 
-    return !bayList.length ?
+    return isLoading ?
         <div>Loading</div>
     :
         <>
