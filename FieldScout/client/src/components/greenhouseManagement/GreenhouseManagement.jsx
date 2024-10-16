@@ -7,6 +7,7 @@ import { addHouseToFacility, deleteFacilityHouse } from "../../services/Facility
 import { Link } from "react-router-dom"
 
 export const GreenhouseManagement = ({ currentUser }) => {
+    const [isLoading, setIsLoading] = useState(true)
     const [houses, setHouses] = useState([])
     const [facility, setFacility] = useState({})
     const [modal, setModal] = useState(false)
@@ -81,11 +82,13 @@ export const GreenhouseManagement = ({ currentUser }) => {
         getFacilityHouses()
     }, [currentUser])
 
-    if (!houses.length) {
-        return (<h1>Loading</h1>)
-    }
+    useEffect(() => {
+        setIsLoading(false)
+    }, [houses])
     
-    return (
+    return isLoading ?
+        <h1>Loading</h1>
+    :
         <>
             <h1>{facility.name} Houses</h1>
             <Table>
@@ -99,7 +102,7 @@ export const GreenhouseManagement = ({ currentUser }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {houses.map(house => {
+                    {isLoading ? <div>loading</div> : houses?.map(house => {
                         return (
                             <tr value={house.id}>
                                 <td><Link to={{pathname: `/greenhouseManagement/${house.id}`, state: { house: house}}}>{house.name}</Link></td>
@@ -186,5 +189,4 @@ export const GreenhouseManagement = ({ currentUser }) => {
                 </Modal>
             </div>
         </>
-    )
 }

@@ -3,6 +3,7 @@ import { addPest, deletePest, editPest, getPests } from "../../services/PestsSer
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
 
 export const PestManagement = () => {
+    const [isLoading, setIsLoading] = useState(true)
     const [pestList, setPestList] = useState([])
     const [modal, setModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
@@ -32,7 +33,7 @@ export const PestManagement = () => {
     const getPestList = () => {
         getPests().then(pestsArr => {
             setPestList(pestsArr)
-        })
+        }).then(setIsLoading(false))
     }
     
     const handleAddPest = () => {
@@ -64,11 +65,10 @@ export const PestManagement = () => {
         getPestList()
     }, [])
 
-    if (!pestList.length > 0) {
-        return (<h1>Loading</h1>)
-    }
 
-    return (
+    return isLoading ?
+        <h1>Loading</h1>
+    :
         <>
             <h1>Pests</h1>
             <Table>
@@ -169,5 +169,4 @@ export const PestManagement = () => {
                 </Modal>
             </div>
         </>
-    )
 }
