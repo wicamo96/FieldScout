@@ -195,6 +195,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                     <Modal isOpen={modal} toggle={() => toggle(bay)}>
                                         <ModalHeader toggle={() => toggle()}>{bay.name} Scouting Report</ModalHeader>
                                         <ModalBody>
+                                            {!bayIdsWithScoutingData[0]?.id ? 
                                             <Table>
                                                 <thead>
                                                     <tr>
@@ -239,6 +240,55 @@ export const ScoutingBays = ({ currentUser }) => {
                                                     })}    
                                                 </tbody>
                                             </Table>
+                                            :
+                                            bayIdsWithScoutingData.find(entry => entry.id === bay.id) ?
+                                            <div>Data already exists in this bay for week {growingWeek}</div>
+                                            :
+                                            <Table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Pest</th>
+                                                        <th>Pressure Level</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {bayDivisions.map(division => {
+                                                        return (
+                                                            <>
+                                                                <tr bgcolor="lightgray">
+                                                                    <td>{division.name}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                {pests.map(pest => {
+                                                                    return (
+                                                                        <tr>
+                                                                            <td>{pest.name}</td>
+                                                                            <td>
+                                                                                <select onChange={(e) => {
+                                                                                    let reportObj = {
+                                                                                        userProfileId: currentUser.id,
+                                                                                        pestId: pest.id,
+                                                                                        pressure: e.target.value,
+                                                                                        bayDivisionId: division.id,
+                                                                                        facilityId: currentUser.facilityId
+                                                                                    }
+                                                                                    handleScoutingReport(reportObj)
+                                                                                    }}>
+                                                                                    <option selected disabled>Select Pressure</option>
+                                                                                    <option value={1}>Low</option>
+                                                                                    <option value={2}>Medium</option>
+                                                                                    <option value={3}>High</option>
+                                                                                </select>
+                                                                            </td>
+                                                                        </tr>
+                                                                    )
+                                                                })}
+                                                            </>
+                                                        )
+                                                    })}    
+                                                </tbody>
+                                            </Table>
+                                            }
                                         </ModalBody>
                                         <ModalFooter>
                                         {!bayIdsWithScoutingData[0]?.id ? 
