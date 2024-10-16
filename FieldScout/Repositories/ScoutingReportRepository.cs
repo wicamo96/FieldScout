@@ -220,5 +220,65 @@ namespace FieldScout.Repositories
                 }
             }
         }
+
+        public List<ScoutingReport> ScoutingReportTrends(int growingWeekStart, int growingWeekEnd, int houseId, int? bayId, int? bayDivId, int pestId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT s.Id AS ReportId, s.Pressure, s.GrowingWeek, hb.HouseId, b.Id AS BayId, bd.Id AS BayDivId
+                                        FROM ScoutingReport s
+                                        LEFT JOIN BayDivisions bd ON bd.Id = s.BayDivisionId
+                                        LEFT JOIN Bays b ON b.Id = bd.BayId
+                                        LEFT JOIN HouseBays hb ON hb.BayId = b.Id
+                                        WHERE hb.HouseId = @HID AND s.PestId = @PestId AND s.GrowingWeek BETWEEN @growingWeekStart AND @growingWeekEnd";
+
+                    if (bayId != 0)
+                    {
+                        cmd.CommandText += " AND b.Id = @BayId";
+                    }
+                    
+                    if (bayDivId != 0)
+                    {
+                        cmd.CommandText += " AND bd.Id = @BDID";
+                    }
+
+                    DbUtils.AddParameter(cmd, "@HID", houseId);
+                    DbUtils.AddParameter(cmd, "@growingWeekStart", growingWeekStart);
+                    DbUtils.AddParameter(cmd, "@growingWeekEnd", growingWeekEnd);
+                    DbUtils.AddParameter(cmd, "@BayId", bayId);
+                    DbUtils.AddParameter(cmd, "@BDID", bayDivId);
+                    DbUtils.AddParameter(cmd, "@PestId", pestId);
+
+                    List<ScoutingReport> reports = new List<ScoutingReport>();
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        reports.Add(new ScoutingReport()
+                        {
+                            Id = DbUtils.GetInt(reader, "ReportId"),
+                            Pressure = DbUtils.GetString(reader, "Pressure"),
+                            GrowingWeek = DbUtils.GetInt(reader, "GrowingWeek"),
+                            BayDivisionId = DbUtils.GetInt(reader, "BayDivId"),
+                            House = new Houses()
+                            {
+                                Id = DbUtils.GetInt(reader, "HouseId")
+                            },
+                            Bay = new Bays()
+                            {
+                                Id = DbUtils.GetInt(reader, "BayId")
+                            }
+                        });
+                    }
+
+                    reader.Close();
+
+                    return reports;
+                }
+            }
+        }
     }
 }

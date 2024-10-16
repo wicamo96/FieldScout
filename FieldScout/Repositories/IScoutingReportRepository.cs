@@ -11,5 +11,6 @@ namespace FieldScout.Repositories
         ScoutingReport GetById(int id);
         List<ScoutingReport> GetBayScoutingReportByGrowingWeek(int growingWeek, int bayDivisionId);
         List<Bays> ScoutingReportBayIds(int growingWeek, int houseId);
+        List<ScoutingReport> ScoutingReportTrends(int growingWeekStart, int growingWeekEnd, int houseId, int? bayId, int? bayDivId, int pestId);
     }
 }
