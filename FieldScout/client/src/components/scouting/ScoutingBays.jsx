@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router-dom"
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
 import { getBayDivisionsByBayId } from "../../services/BayDivisionsService.jsx"
 import { getPests } from "../../services/PestsServices.jsx"
-import { editScoutingReport, getCurrentGrowingWeek, getScoutingReportBayIds, getScoutingReportByBayDivIdAndGrowingWeek, postScoutingReport } from "../../services/ScoutingReportServices.jsx"
+import { deleteScoutingReport, editScoutingReport, getCurrentGrowingWeek, getScoutingReportBayIds, getScoutingReportByBayDivIdAndGrowingWeek, postScoutingReport } from "../../services/ScoutingReportServices.jsx"
 
 export const ScoutingBays = ({ currentUser }) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -30,6 +30,7 @@ export const ScoutingBays = ({ currentUser }) => {
         } else {
             getBayDivisionsByBayId(bay.id).then(divArr => setBayDivisions(divArr))
             setModal(!modal)
+            scoutingReportBayIds()
         }
     }
 
@@ -69,7 +70,7 @@ export const ScoutingBays = ({ currentUser }) => {
                     })
                 })
                 setScoutingReport(tmp)
-            }).then(() => getPests().then(pestsArr => setPests(pestsArr)).then(setDeleteModal(!deleteModal)))
+            }).then(() => getPests().then(pestsArr => setPests(pestsArr)).then(setDeleteModal(!deleteModal))).then(scoutingReportBayIds())
         }
     }
 
@@ -139,6 +140,12 @@ export const ScoutingBays = ({ currentUser }) => {
         })
     }
     
+    const handleSubmitDeleteScoutingReport = () => {
+        scoutingReport.forEach(entry => {
+            deleteScoutingReport(entry.id)
+        })
+        toggleDelete()
+    }
 
     useEffect(() => {
         getBaysByHouseId(shId).then(baysArr => {
@@ -234,9 +241,18 @@ export const ScoutingBays = ({ currentUser }) => {
                                             </Table>
                                         </ModalBody>
                                         <ModalFooter>
-                                        <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
-                                            Add
-                                        </Button>
+                                        {!bayIdsWithScoutingData[0]?.id ? 
+                                            <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
+                                                Add
+                                            </Button>
+                                        : 
+                                        bayIdsWithScoutingData.find(entry => entry.id === bay.id) ? 
+                                        "" 
+                                        :
+                                            <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
+                                                Add
+                                            </Button>
+                                        }
                                         <Button color="secondary" onClick={() => toggle()}>
                                             Cancel
                                         </Button>
@@ -265,7 +281,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                     <td>{division.name}</td>
                                                                     <td></td>
                                                                 </tr>
-                                                                {scoutingReport ?
+                                                                {scoutingReport[0]?.id ?
                                                                 pests.map(pest => {
                                                                     return (
                                                                         <tr>
@@ -289,7 +305,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                     )                                                                    
                                                                 })
                                                                 :
-                                                                <div></div>
+                                                                <div>No Data</div>
                                                                 }
                                                             </>
                                                         )
@@ -298,9 +314,13 @@ export const ScoutingBays = ({ currentUser }) => {
                                             </Table>
                                         </ModalBody>
                                         <ModalFooter>
-                                            <Button color="primary"  onClick={() => handleSubmitEditedScoutingReport()}>
-                                                Submit Edit
-                                            </Button>
+                                            {scoutingReport[0]?.id ? 
+                                                <Button color="warning"  onClick={() => handleSubmitEditedScoutingReport()}>
+                                                    Submit Edit
+                                                </Button>
+                                            :
+                                            ""    
+                                            }
                                             <Button color="secondary" onClick={() => toggleEdit()}>
                                                 Cancel
                                             </Button>
@@ -313,17 +333,32 @@ export const ScoutingBays = ({ currentUser }) => {
                                     </Button>
                                     <Modal isOpen={deleteModal} toggle={() => toggleDelete(bay)}>
                                         <ModalHeader toggle={() => toggleDelete()}>Delete</ModalHeader>
-                                        <ModalBody>
+                                        {scoutingReport[0]?.id ?
+                                        <>
+                                            <ModalBody>
                                             Are you sure you want to delete week {growingWeek} scouting data for {bay.name}?
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button color="danger">
-                                                Confirm Delete
-                                            </Button>
-                                            <Button color="secondary" onClick={() => toggleDelete()}>
-                                                Cancel
-                                            </Button>
-                                        </ModalFooter>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <Button color="danger" onClick={() => handleSubmitDeleteScoutingReport()}>
+                                                    Confirm Delete
+                                                </Button>
+                                                <Button color="secondary" onClick={() => toggleDelete()}>
+                                                    Cancel
+                                                </Button>
+                                            </ModalFooter>
+                                        </>
+                                        :
+                                        <>
+                                            <ModalBody>
+                                            No Data To Delete!
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <Button color="secondary" onClick={() => toggleDelete()}>
+                                                    Cancel
+                                                </Button>
+                                            </ModalFooter>
+                                        </>
+                                        }
                                     </Modal>
                                 </td>
                             </tr>

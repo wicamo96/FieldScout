@@ -31,3 +31,9 @@ export const editScoutingReport = (reportObj) => {
 export const getScoutingReportBayIds = (growingWeek, houseId) => {
     return fetch(`${baseUrl}/ScoutingReportBayIds/${houseId}/${growingWeek}`).then(res => res.json())
 }
+
+export const deleteScoutingReport = (reportId) => {
+    return fetch(`${baseUrl}/${reportId}`, {
+        method: "DELETE"
+    })
+}

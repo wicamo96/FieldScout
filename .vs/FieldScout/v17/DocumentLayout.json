@@ -19,21 +19,12 @@
       "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\willc\\AppData\\Local\\Temp\\r1w5zct4..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\baysrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\baysrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\controllers\\pestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\controllers\\pestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\willc\\AppData\\Local\\Temp\\r1w5zct4..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\willc\\AppData\\Local\\Temp\\r1w5zct4..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -68,12 +59,11 @@
               "RelativeToolTip": "FieldScout\\Program.cs",
               "ViewState": "AQIAAB8AAAAAAAAAAAApwC8AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T19:37:55.36Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-11T19:37:55.36Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "BaysRepository.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\BaysRepository.cs",
               "RelativeDocumentMoniker": "FieldScout\\Repositories\\BaysRepository.cs",
@@ -82,17 +72,6 @@
               "ViewState": "AQIAAG0AAAAAAAAAAAAswG8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T19:13:43.825Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SQLQuery1.sql ",
-              "DocumentMoniker": "C:\\Users\\willc\\AppData\\Local\\Temp\\r1w5zct4..sql",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\r1w5zct4..sql",
-              "ToolTip": "SQLQuery1.sql *",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-10-15T17:09:24.802Z",
-              "EditorCaption": ""
             }
           ]
         },
@@ -123,12 +102,11 @@
               "RelativeToolTip": "FieldScout\\Repositories\\ScoutingReportRepository.cs",
               "ViewState": "AQIAALYAAAAAAAAAAAAAwNoAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T18:50:47.164Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-11T18:50:47.164Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "PestsController.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Controllers\\PestsController.cs",
               "RelativeDocumentMoniker": "FieldScout\\Controllers\\PestsController.cs",

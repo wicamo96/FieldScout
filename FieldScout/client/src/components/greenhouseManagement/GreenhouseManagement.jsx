@@ -102,7 +102,7 @@ export const GreenhouseManagement = ({ currentUser }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {isLoading ? <div>loading</div> : houses.map(house => {
+                    {isLoading ? <div>loading</div> : houses?.map(house => {
                         return (
                             <tr value={house.id}>
                                 <td><Link to={{pathname: `/greenhouseManagement/${house.id}`, state: { house: house}}}>{house.name}</Link></td>
