@@ -20,7 +20,8 @@ export const HouseTrends = ({ currentUser }) => {
     const [bayList, setBayList] = useState([])
     const [bayDivList, setBayDivList] = useState([])
     const [trendData, setTrendData] = useState([])
-    const [rawTrendData, setRawTrendData] = useState([])
+    const [parsedData, setParsedData] = useState([])
+    const [pressureData, setPressureData] = useState([])
     const svgRef = useRef()
 
     const location = useLocation()
@@ -32,6 +33,44 @@ export const HouseTrends = ({ currentUser }) => {
         setGrowingWeekStart(growingWeek - weeks)
     }
 
+    const parseScoutingInfo = (gwArr, prArr) => {
+        let gArr = []
+        for (let i = 0; i < gwArr.length; i++) {
+            if (!gArr.includes(gwArr[i])) {
+                gArr.push(gwArr[i])
+            }
+        }
+        
+        let count = []
+        let pArr = []
+        let copy = [...prArr]
+        for (let i = 0; i < copy.length; i++) {
+            if (!count.find(entry => entry === copy[i].growingWeek)) {
+                let weekArr = prArr.filter(entry => entry.growingWeek === copy[i].growingWeek)
+                if (weekArr.length > 1) {
+                    let num = 0
+                    for (let j = 0; j < weekArr.length; j++) {
+                        num += weekArr[j].pressure
+                        count.push(weekArr[j].growingWeek)
+                    }
+                    pArr.push(Math.round(num / weekArr.length))
+                } else {
+                    pArr.push(weekArr[0].pressure)
+                    count.push(weekArr[0].growingWeek)
+                }
+            }
+        }
+
+        let data = []
+        for (let k = 0; k < pArr.length; k++) {
+            data.push({pressure: pArr[k], growingWeek: gArr[k]})
+        }
+     
+        setParsedData(data)
+        setPressureData(pArr)
+        
+    }
+
     const handleFetchData = () => {
         if (!pestId > 0 || !growingWeekEnd > 0 || !growingWeekEnd > 0) {
             toggle()
@@ -39,58 +78,19 @@ export const HouseTrends = ({ currentUser }) => {
         } else {
             getScoutingReportTrends(growingWeekStart, growingWeekEnd, house.id, bayId, bayDivId, pestId).then(res => {
                                                                                                                 let copy = []
+                                                                                                                let gArr = []
+                                                                                                                let pArr = []
                                                                                                                 res.forEach(entry => {
                                                                                                                     let tmp = {...entry}
                                                                                                                     tmp.pressure = parseInt(entry.pressure)
+                                                                                                                    gArr.push(tmp.growingWeek)
+                                                                                                                    pArr.push(tmp)
                                                                                                                     copy.push(tmp)
                                                                                                                 })
                                                                                                                 setTrendData(copy)
+                                                                                                                parseScoutingInfo(gArr, pArr)
                                                                                                             })
         }
-    }
-
-    const createVisualization = () => {
-        const w = 500
-        const h = 500
-        const svg = d3.select(svgRef.current)
-                      .attr("width", w)
-                      .attr("height")
-                      .style('background', '#d3d3d3')
-
-        const xScale = d3.scaleLinear()
-                        .domain([0, rawTrendData.length - 1])
-                        .range([0, w])
-
-        const yScale = d3.scaleLinear()
-                         .domain([0, h])
-                         .range([h, 0])
-
-        const generateScaledLine = d3.line()
-                                     .x((d, i) => xScale(i))
-                                     .y(yScale)
-                                     .curve(d3.curveCardinal)
-
-        svg?.selectAll('.line')
-           .data(rawTrendData)
-           .join('path')
-           .attr('d', d => generateScaledLine(d))
-           .attr('fill', 'none')
-           .attr('stroke', 'black')
-
-        // const svg = d3.select(div)
-        //               .append("svg")
-        //               .attr("width", 500)
-        //               .attr("height", 500)
-
-        //       svg.selectAll("rect")
-        //          .data(rawTrendData)
-        //          .enter()
-        //          .append("rect")
-        //          .attr("x", (d, i) => {return (i * ((500 - rawTrendData.length * 5) / rawTrendData.length) + 5)})
-        //          .attr("y", (d, i) => {return (500 - (d/3 * 500) + 10)})
-        //          .attr("height", (d) => {return ((d/3 * 500) + 10)})
-        //          .attr("width", ((500 - rawTrendData.length * 5) / rawTrendData.length))
-        //          .attr("padding", "20px")
     }
 
     useEffect(() => {
@@ -124,16 +124,8 @@ export const HouseTrends = ({ currentUser }) => {
     }, [bayId])
 
     useEffect(() => {
-        let tmp = []
-        trendData.forEach(entry => {
-            tmp.push(entry.pressure)
-        })
-        setRawTrendData(tmp)
-    }, [trendData])
-
-    useEffect(() => {
         const w = 500
-        const h = 500
+        const h = 400
         const svg = d3.select(svgRef.current)
                       .attr("width", w)
                       .attr("height", h)
@@ -141,38 +133,47 @@ export const HouseTrends = ({ currentUser }) => {
                       .style('overflow', 'visible')
 
         const xScale = d3.scaleLinear()
-                        .domain([0, rawTrendData.length - 1])
-                        .range([0, w])
+                         .domain(d3.extent(parsedData, d => d.growingWeek))
+                         .range([0, w])
 
         const yScale = d3.scaleLinear()
                          .domain([0, 3])
-                         .range([3, 0])
+                         .range([h, 0])
 
-        const generateScaledLine = d3.line()
-                                     .x((d, i) => xScale(i))
-                                     .y(yScale)
-                                     .curve(d3.curveCardinal)
+        const line = d3.line()
+                        .x((d, i) => xScale(d.growingWeek))
+                        .y(d => yScale(d.pressure))
+                        .curve(d3.curveCardinal)
 
-        const xAxis = d3.axisBottom(xScale)
-                        .ticks(rawTrendData.length)
-                        .tickFormat(i => i + 1)
-        const yAxis = d3.axisLeft(yScale)
-                        .ticks(3)
-        svg.append('g')
+        let xAxis = d3.axisBottom(xScale)
+                      .ticks(parsedData.length - 1)
+                        
+        svg.select(".x-axis")
+           .transition()
+           .duration(250)
            .call(xAxis)
            .attr('transform', `translate(0, ${h})`)
+
+        const yAxis = d3.axisLeft(yScale)
+                        .ticks(3)
 
         svg.append('g')
            .call(yAxis)
 
-        svg.selectAll('.line')
-           .data(rawTrendData)
-           .join('path')
-           .attr('d', (d) => generateScaledLine(d))
-           .attr('fill', 'none')
-           .attr('stroke', 'black')
+        svg.selectAll('path').remove()
+        svg.append('path')
+            .datum(parsedData)
+            .join('path')
+            .transition()
+            .duration(250)
+            .attr('fill', 'none')
+            .attr('stroke', 'black')
+            .attr('stroke-width', 1)
+            .attr('d', line)
 
-    }, [rawTrendData])
+        svg.select('.x-axis').call(xAxis)
+
+    }, [parsedData, pressureData])
 
 
     return (
@@ -256,7 +257,9 @@ export const HouseTrends = ({ currentUser }) => {
                     </Modal>
                 </thead>
             </Table>
-            <svg ref={svgRef}></svg>
+            <svg ref={svgRef}>
+                <g className="x-axis" />
+            </svg>
         </>
     )
 }
