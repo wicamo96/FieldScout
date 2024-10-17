@@ -150,7 +150,7 @@ export const HouseTrends = ({ currentUser }) => {
                         
         svg.select(".x-axis")
            .transition()
-           .duration(250)
+           .duration(350)
            .call(xAxis)
            .attr('transform', `translate(0, ${h})`)
 
@@ -165,13 +165,28 @@ export const HouseTrends = ({ currentUser }) => {
             .datum(parsedData)
             .join('path')
             .transition()
-            .duration(250)
+            .duration(350)
             .attr('fill', 'none')
             .attr('stroke', 'black')
             .attr('stroke-width', 1)
             .attr('d', line)
 
         svg.select('.x-axis').call(xAxis)
+
+        svg.append("text")
+           .attr("class", "x-axis-label")
+           .attr("text-anchor", "middle")
+           .attr("x", w / 2)
+           .attr("y", h + 40)
+           .text("Growing Week")
+
+        svg.append("text")
+            .attr("class", "y-axis-label")
+            .attr("text-anchor", "middle")
+            .attr("transform", "rotate(-90)")
+           .attr("x", -200)
+           .attr("y", (-40))
+           .text("Pressure")
 
     }, [parsedData, pressureData])
 
