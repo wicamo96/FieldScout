@@ -3,6 +3,8 @@ import { getCurrentGrowingWeek } from "../../services/ScoutingReportServices.jsx
 import { getByIdWithHouses } from "../../services/FacilityServices.jsx"
 import { getPests } from "../../services/PestsServices.jsx"
 import { Table } from "reactstrap"
+import { DashboardGraph } from "./DashboardGraph.jsx"
+import './Dashboard.css'
 
 export const Dashboard = ({ currentUser }) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -18,7 +20,7 @@ export const Dashboard = ({ currentUser }) => {
 
     useEffect(() => {
         getByIdWithHouses(currentUser.facilityId).then(res => setFacility(res))
-    }, [])
+    }, [currentUser])
 
     useEffect(() => {
         getPests().then(res => {
@@ -45,7 +47,7 @@ export const Dashboard = ({ currentUser }) => {
     :
         <>
             <h1>{facility.name} Week {growingWeek}</h1>
-            <Table>
+            <table>
                 <thead>
                     <tr>
                         <td></td>
@@ -54,9 +56,26 @@ export const Dashboard = ({ currentUser }) => {
                 </thead>
                 <tbody>
                     <tr>
-                            
-                    </tr>                    
+                        <td><DashboardGraph pest={pests[0]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td></td>
+                        <td><DashboardGraph pest={pests[1]} houseId={1} growingWeek={growingWeek} /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><DashboardGraph pest={pests[2]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td></td>
+                        <td><DashboardGraph pest={pests[3]} houseId={1} growingWeek={growingWeek} /></td>
+                    </tr>
+                    <tr className="secondary">
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><DashboardGraph pest={pests[4]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td></td>
+                    </tr>
                 </tbody>
-            </Table>
+            </table>
         </>
 }
