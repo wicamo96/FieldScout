@@ -37,3 +37,7 @@ export const deleteScoutingReport = (reportId) => {
         method: "DELETE"
     })
 }
+
+export const getScoutingReportTrends = (growingWeekStart, growingWeekEnd, houseId, bayId, bayDivId, pestId) => {
+    return fetch(`${baseUrl}/ScoutingReportTrends/${growingWeekStart}/${growingWeekEnd}/${houseId}/${bayId}/${bayDivId}/${pestId}`).then(res => res.json())
+}

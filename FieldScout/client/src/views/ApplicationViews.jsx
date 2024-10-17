@@ -8,6 +8,8 @@ import { GreenhouseBayDivision } from "../components/greenhouseManagement/Greenh
 import { PestManagement } from "../components/pestManagement/PestManagement.jsx"
 import { ScoutingHouseList } from "../components/scouting/ScoutingHouseList.jsx"
 import { ScoutingBays } from "../components/scouting/ScoutingBays.jsx"
+import { TrendsHouseList } from "../components/trends/TrendsHouseList.jsx"
+import { HouseTrends } from "../components/trends/HouseTrends.jsx"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -43,6 +45,10 @@ export const ApplicationViews = () => {
                 <Route path="scouting">
                     <Route index element={<ScoutingHouseList currentUser={currentUser} />} />
                     <Route path=":shId" element={<ScoutingBays currentUser={currentUser} />} />
+                </Route>
+                <Route path="trends">
+                    <Route index element={<TrendsHouseList currentUser={currentUser} />} />
+                    <Route path=":thId" element={<HouseTrends currentUser={currentUser} />} />
                 </Route>
             </Route>
         </Routes>

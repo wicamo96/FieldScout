@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\controllers\\scoutingreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\scoutingreportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\scoutingreportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\iscoutingreportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\iscoutingreportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\scoutingreportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\scoutingreportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\models\\scoutingreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\models\\scoutingreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,7 +37,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 54,
+          "DockedWidth": 101,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -44,14 +48,14 @@
               "RelativeDocumentMoniker": "FieldScout\\Controllers\\ScoutingReportController.cs",
               "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Controllers\\ScoutingReportController.cs",
               "RelativeToolTip": "FieldScout\\Controllers\\ScoutingReportController.cs",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAAwGwAAAAeAAAA",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAAAHUAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T19:38:36.985Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Program.cs",
               "RelativeDocumentMoniker": "FieldScout\\Program.cs",
@@ -63,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "BaysRepository.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\BaysRepository.cs",
               "RelativeDocumentMoniker": "FieldScout\\Repositories\\BaysRepository.cs",
@@ -76,37 +80,49 @@
           ]
         },
         {
-          "DockedWidth": 70,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 23,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "ScoutingReport.cs",
+              "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Models\\ScoutingReport.cs",
+              "RelativeDocumentMoniker": "FieldScout\\Models\\ScoutingReport.cs",
+              "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Models\\ScoutingReport.cs",
+              "RelativeToolTip": "FieldScout\\Models\\ScoutingReport.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T18:31:51.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "IScoutingReportRepository.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\IScoutingReportRepository.cs",
               "RelativeDocumentMoniker": "FieldScout\\Repositories\\IScoutingReportRepository.cs",
               "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\IScoutingReportRepository.cs",
               "RelativeToolTip": "FieldScout\\Repositories\\IScoutingReportRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAACOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T19:53:42.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-11T19:53:42.038Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ScoutingReportRepository.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\ScoutingReportRepository.cs",
               "RelativeDocumentMoniker": "FieldScout\\Repositories\\ScoutingReportRepository.cs",
               "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\ScoutingReportRepository.cs",
               "RelativeToolTip": "FieldScout\\Repositories\\ScoutingReportRepository.cs",
-              "ViewState": "AQIAALYAAAAAAAAAAAAAwNoAAAAfAAAA",
+              "ViewState": "AQIAAOAAAAAAAAAAAAAiwNkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T18:50:47.164Z"
+              "WhenOpened": "2024-10-11T18:50:47.164Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "PestsController.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Controllers\\PestsController.cs",
               "RelativeDocumentMoniker": "FieldScout\\Controllers\\PestsController.cs",

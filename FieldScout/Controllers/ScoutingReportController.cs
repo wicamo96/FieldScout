@@ -108,5 +108,18 @@ namespace FieldScout.Controllers
 
             return Ok(bayIds);
         }
+
+        [HttpGet("ScoutingReportTrends/{growingWeekStart}/{growingWeekEnd}/{houseId}/{bayId}/{bayDivId}/{pestId}")]
+        public IActionResult ScoutingReportTrends(int growingWeekStart, int growingWeekEnd, int houseId, int bayId, int bayDivId, int pestId)
+        {
+            var reports = _scoutingReportRepository.ScoutingReportTrends(growingWeekStart, growingWeekEnd, houseId, bayId, bayDivId, pestId);
+
+            if (reports == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(reports);
+        }
     }
 }

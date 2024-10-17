@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { getByIdWithHouses } from "../../services/FacilityServices.jsx"
 import { Table } from "reactstrap"
-import { Link, useNavigate } from "react-router-dom"
 
-export const ScoutingHouseList = ({ currentUser }) => {
+export const TrendsHouseList = ({ currentUser }) => {
     const [isLoading, setIsLoading] = useState(true)
     const [houses, setHouses] = useState([])
 
@@ -15,27 +15,27 @@ export const ScoutingHouseList = ({ currentUser }) => {
         }).then(setIsLoading(false))
     }, [currentUser])
 
-
-    return isLoading ?
+    return isLoading ? 
         <div>Loading</div>
     :
         <>
-            <h1>Select House To Add Scouting Data</h1>
+            <h1>Select House To View Pest Trends</h1>
             <Table>
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <td>Name</td>
                     </tr>
                 </thead>
                 <tbody>
                     {houses?.map(house => {
                         return (
                             <tr>
-                                <td><button onClick={() => navigate(`/scouting/${house.id}`, {state: { houseObj: house }})}>{house.name}</button></td>
+                                <td><button onClick={() => navigate(`/trends/${house.id}`, { state: { houseObj: house }})}>{house.name}</button></td>
                             </tr>
                         )
                     })}
                 </tbody>
             </Table>
         </>
+    
 }
