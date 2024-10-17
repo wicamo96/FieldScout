@@ -13,6 +13,12 @@ export const Dashboard = ({ currentUser }) => {
     const [pests, setPests] = useState([])
     const [rows, setRows] = useState(0)
     const [even, setEven] = useState(false)
+    const [houseList, setHouseList] = useState([])
+    const [houseSelection, setHouseSelection] = useState({})
+
+    useEffect(() => {
+        setHouseList(facility.houses)
+    }, [facility])
 
     useEffect(() => {
         getCurrentGrowingWeek().then(res => setGrowingWeek(res))
@@ -47,6 +53,16 @@ export const Dashboard = ({ currentUser }) => {
     :
         <>
             <h1>{facility.name} Week {growingWeek}</h1>
+            <label>Select A House to View Last 4 Weeks Of Data
+                <select onClick={(e) => setHouseSelection(e.target.value)}>
+                    <option selected disabled>Filter By House</option>
+                    {houseList?.map(house => {
+                        return (
+                            <option value={house.id}>{house.name}</option>
+                        )
+                    })}
+                </select>
+            </label>
             <table>
                 <thead>
                     <tr>
@@ -56,23 +72,23 @@ export const Dashboard = ({ currentUser }) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><DashboardGraph pest={pests[0]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td><DashboardGraph pest={pests[0]} houseId={houseSelection} growingWeek={growingWeek} /></td>
                         <td></td>
-                        <td><DashboardGraph pest={pests[1]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td><DashboardGraph pest={pests[1]} houseId={houseSelection} growingWeek={growingWeek} /></td>
                     </tr>
                     <tr>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><DashboardGraph pest={pests[2]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td><DashboardGraph pest={pests[2]} houseId={houseSelection} growingWeek={growingWeek} /></td>
                         <td></td>
-                        <td><DashboardGraph pest={pests[3]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td><DashboardGraph pest={pests[3]} houseId={houseSelection} growingWeek={growingWeek} /></td>
                     </tr>
                     <tr className="secondary">
                         <td></td>
                     </tr>
                     <tr>
-                        <td><DashboardGraph pest={pests[4]} houseId={1} growingWeek={growingWeek} /></td>
+                        <td><DashboardGraph pest={pests[4]} houseId={houseSelection} growingWeek={growingWeek} /></td>
                         <td></td>
                     </tr>
                 </tbody>
