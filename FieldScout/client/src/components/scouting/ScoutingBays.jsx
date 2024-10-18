@@ -222,7 +222,9 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                                         pestId: pest.id,
                                                                                         pressure: e.target.value,
                                                                                         bayDivisionId: division.id,
-                                                                                        facilityId: currentUser.facilityId
+                                                                                        facilityId: currentUser.facilityId,
+                                                                                        bay: null,
+                                                                                        house: null
                                                                                     }
                                                                                     handleScoutingReport(reportObj)
                                                                                     }}>
@@ -270,7 +272,9 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                                         pestId: pest.id,
                                                                                         pressure: e.target.value,
                                                                                         bayDivisionId: division.id,
-                                                                                        facilityId: currentUser.facilityId
+                                                                                        facilityId: currentUser.facilityId,
+                                                                                        bay: null,
+                                                                                        house: null
                                                                                     }
                                                                                     handleScoutingReport(reportObj)
                                                                                     }}>
@@ -341,7 +345,9 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                                     let reportObj = {
                                                                                         bayDivisionId: division.id,
                                                                                         pestId: pest.id,
-                                                                                        pressure: e.target.value
+                                                                                        pressure: e.target.value,
+                                                                                        bay: null,
+                                                                                        house: null
                                                                                     }
                                                                                     handleEditScoutingReport(reportObj)
                                                                                 }}>

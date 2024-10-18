@@ -137,7 +137,7 @@ export const HouseTrends = ({ currentUser }) => {
                          .range([0, w])
 
         const yScale = d3.scaleLinear()
-                         .domain([0, 3])
+                         .domain([0, 4])
                          .range([h, 0])
 
         const line = d3.line()
