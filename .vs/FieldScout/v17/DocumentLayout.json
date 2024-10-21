@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\pestsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\pestsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\controllers\\scoutingreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\controllers\\scoutingreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,6 +27,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PestsRepository.cs",
+              "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\PestsRepository.cs",
+              "RelativeDocumentMoniker": "FieldScout\\Repositories\\PestsRepository.cs",
+              "ToolTip": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\PestsRepository.cs*",
+              "RelativeToolTip": "FieldScout\\Repositories\\PestsRepository.cs*",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAvwG4AAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T12:16:25.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ScoutingReportController.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Controllers\\ScoutingReportController.cs",
               "RelativeDocumentMoniker": "FieldScout\\Controllers\\ScoutingReportController.cs",
@@ -35,7 +52,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ScoutingReport.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Models\\ScoutingReport.cs",
               "RelativeDocumentMoniker": "FieldScout\\Models\\ScoutingReport.cs",
@@ -43,8 +60,7 @@
               "RelativeToolTip": "FieldScout\\Models\\ScoutingReport.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAgwA8AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-18T13:33:23.346Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-18T13:33:23.346Z"
             }
           ]
         }

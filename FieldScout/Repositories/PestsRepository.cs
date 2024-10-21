@@ -107,7 +107,8 @@ namespace FieldScout.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Pests WHERE Id = @Id";
+                    cmd.CommandText = @"DELETE FROM ScoutingReport WHERE PestId = @Id;
+                                        Delete FROM Pests WHERE Id = @Id;";
 
                     DbUtils.AddParameter(cmd, "Id", id);
 
