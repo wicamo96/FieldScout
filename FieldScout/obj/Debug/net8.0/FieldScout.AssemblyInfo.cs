@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FieldScout")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfa04438608c22df37817f9b9b58ad53f0456d28")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abad74b1add591e2f06cc8729a90b8b1f4e7a491")]
 [assembly: System.Reflection.AssemblyProductAttribute("FieldScout")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FieldScout")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
