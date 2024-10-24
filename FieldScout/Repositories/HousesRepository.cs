@@ -109,7 +109,7 @@ namespace FieldScout.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE CASCADE FROM Houses
+                    cmd.CommandText = @"DELETE FROM Houses
                                         WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "Id", id);
