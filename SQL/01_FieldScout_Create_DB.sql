@@ -105,9 +105,11 @@ ALTER TABLE [HouseBays] ADD FOREIGN KEY ([BayId]) REFERENCES [Bays] ([Id])
 GO
 
 ALTER TABLE [HouseBays] ADD FOREIGN KEY ([HouseId]) REFERENCES [Houses] ([Id])
+ON DELETE CASCADE
 GO
 
 ALTER TABLE [FacilityHouses] ADD FOREIGN KEY ([HouseId]) REFERENCES [Houses] ([Id])
+ON DELETE CASCADE
 GO
 
 ALTER TABLE [FacilityHouses] ADD FOREIGN KEY ([FacilityId]) REFERENCES [Facilities] ([Id])
