@@ -108,7 +108,8 @@ namespace FieldScout.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Bays WHERE Id = @Id";
+                    cmd.CommandText = @"DELETE FROM BayDivisions WHERE BayId = @Id;
+                                        DELETE FROM Bays WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "Id", id);
 

@@ -49,6 +49,8 @@ namespace FieldScout.Controllers
             report.Date = DateTime.Now;
             Calendar calendar = CultureInfo.InvariantCulture.Calendar;
             report.GrowingWeek = calendar.GetWeekOfYear(report.Date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            report.Bay = null;
+            report.House = null;
             _scoutingReportRepository.Add(report);
             return CreatedAtAction(
                 "GetById",

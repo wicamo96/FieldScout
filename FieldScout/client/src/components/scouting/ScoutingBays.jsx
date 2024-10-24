@@ -19,6 +19,7 @@ export const ScoutingBays = ({ currentUser }) => {
     const [growingWeek, setGrowingWeek] = useState(0)
     const [editedScoutingReport, setEditedScoutingReport] = useState([])
     const [bayIdsWithScoutingData, setBayIdsWithScoutingData] = useState([{id: 0, name: null}])
+    const [bayObj, setBayObj] = useState({})
     
     const location = useLocation()
     const { shId } = useParams()
@@ -28,6 +29,7 @@ export const ScoutingBays = ({ currentUser }) => {
             setModal(!modal)
             setScoutingReport([])
         } else {
+            setBayObj(bay)
             getBayDivisionsByBayId(bay.id).then(divArr => setBayDivisions(divArr))
             setModal(!modal)
             scoutingReportBayIds()
@@ -39,6 +41,7 @@ export const ScoutingBays = ({ currentUser }) => {
             setEditModal(!editModal)
             setScoutingReport([])
         } else {
+            setBayObj(bay)
             getBayDivisionsByBayId(bay.id).then(divArr => {
                 setBayDivisions(divArr)
                 let tmp = []
@@ -59,6 +62,7 @@ export const ScoutingBays = ({ currentUser }) => {
             setDeleteModal(!deleteModal)
             setScoutingReport([])
         } else {
+            setBayObj(bay)
             getBayDivisionsByBayId(bay.id).then(divArr => {
                 setBayDivisions(divArr)
                 let tmp = []
@@ -193,7 +197,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                         <i className="fa-solid fa-plus" />
                                     </Button>
                                     <Modal isOpen={modal} toggle={() => toggle(bay)}>
-                                        <ModalHeader toggle={() => toggle()}>{bay.name} Scouting Report</ModalHeader>
+                                        <ModalHeader toggle={() => toggle()}>{bayObj.name} Scouting Report</ModalHeader>
                                         <ModalBody>
                                             {!bayIdsWithScoutingData[0]?.id ? 
                                             <Table>
@@ -222,7 +226,9 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                                         pestId: pest.id,
                                                                                         pressure: e.target.value,
                                                                                         bayDivisionId: division.id,
-                                                                                        facilityId: currentUser.facilityId
+                                                                                        facilityId: currentUser.facilityId,
+                                                                                        bay: null,
+                                                                                        house: null
                                                                                     }
                                                                                     handleScoutingReport(reportObj)
                                                                                     }}>
@@ -241,7 +247,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                                 </tbody>
                                             </Table>
                                             :
-                                            bayIdsWithScoutingData.find(entry => entry.id === bay.id) ?
+                                            bayIdsWithScoutingData.find(entry => entry.id === bayObj.id) ?
                                             <div>Data already exists in this bay for week {growingWeek}</div>
                                             :
                                             <Table>
@@ -270,7 +276,9 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                                         pestId: pest.id,
                                                                                         pressure: e.target.value,
                                                                                         bayDivisionId: division.id,
-                                                                                        facilityId: currentUser.facilityId
+                                                                                        facilityId: currentUser.facilityId,
+                                                                                        bay: null,
+                                                                                        house: null
                                                                                     }
                                                                                     handleScoutingReport(reportObj)
                                                                                     }}>
@@ -296,7 +304,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                                 Add
                                             </Button>
                                         : 
-                                        bayIdsWithScoutingData.find(entry => entry.id === bay.id) ? 
+                                        bayIdsWithScoutingData.find(entry => entry.id === bayObj.id) ? 
                                         "" 
                                         :
                                             <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
@@ -341,7 +349,9 @@ export const ScoutingBays = ({ currentUser }) => {
                                                                                     let reportObj = {
                                                                                         bayDivisionId: division.id,
                                                                                         pestId: pest.id,
-                                                                                        pressure: e.target.value
+                                                                                        pressure: e.target.value,
+                                                                                        bay: null,
+                                                                                        house: null
                                                                                     }
                                                                                     handleEditScoutingReport(reportObj)
                                                                                 }}>
@@ -386,7 +396,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                         {scoutingReport[0]?.id ?
                                         <>
                                             <ModalBody>
-                                            Are you sure you want to delete week {growingWeek} scouting data for {bay.name}?
+                                            Are you sure you want to delete week {growingWeek} scouting data for {bayObj.name}?
                                             </ModalBody>
                                             <ModalFooter>
                                                 <Button color="danger" onClick={() => handleSubmitDeleteScoutingReport()}>

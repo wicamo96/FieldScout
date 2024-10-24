@@ -10,8 +10,8 @@
         public DateTime Date { get; set; }
         public int FacilityId { get; set; }
         public int GrowingWeek { get; set; }
-        public Bays Bay { get; set; }
-        public Houses House { get; set; }
+        public Bays? Bay { get; set; }
+        public Houses? House { get; set; }
 
     }
 }
