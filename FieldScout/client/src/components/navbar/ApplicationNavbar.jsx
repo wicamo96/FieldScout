@@ -4,15 +4,20 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  NavbarText
 } from 'reactstrap';
+import './NavBar.css'
+import { useNavigate } from 'react-router-dom';
 
 export const ApplicationNavbar = () => {
+    const navigate = useNavigate()
+    
     return (
         <div>
-        <Navbar container='fluid'>
+        <Navbar className="navFix" container='fluid'>
             <NavbarBrand href="/">Field Scout</NavbarBrand>
-            <Nav className="gap-x">
+            <Nav className="ml-auto">
                 <NavItem>
                     <NavLink href="/greenhouseManagement">
                         Greenhouse Management
@@ -41,6 +46,13 @@ export const ApplicationNavbar = () => {
                     </NavLink>
                 </NavItem>
             </Nav>
+            {/* <NavbarText>
+                <button onClick={() => {
+                                localStorage.removeItem("fieldScout_user")
+                                navigate("/login")}}>
+                    Log Out
+                </button>
+            </NavbarText> */}
         </Navbar>
         </div>
     )

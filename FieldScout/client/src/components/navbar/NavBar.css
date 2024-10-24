@@ -1,0 +1,8 @@
+.navFlex {
+    display: flex;
+    justify-content: flex-start; 
+}
+
+.navFix {
+    width: 100vw;
+}
