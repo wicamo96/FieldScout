@@ -5,4 +5,6 @@
 
 .navFix {
     width: 100vw;
+    height: 5rem;
+    background-color: var(--col-4)
 }

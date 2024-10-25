@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { addPest, deletePest, editPest, getPests } from "../../services/PestsServices.jsx"
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
+import './PestManagement.css'
 
 export const PestManagement = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -70,8 +71,8 @@ export const PestManagement = () => {
         <h1>Loading</h1>
     :
         <>
-            <h1>Pests</h1>
-            <Table>
+            <h2 className="margin">Pests</h2>
+            <Table className="margin">
                 <thead>
                     <tr>
                         <th>
@@ -143,7 +144,7 @@ export const PestManagement = () => {
                 </tbody>
             </Table>
             <div>
-                <Button onClick={() => toggle()}>
+                <Button className="margin" onClick={() => toggle()}>
                     Add New Pest
                 </Button>
                 <Modal isOpen={modal} toggle={toggle}>

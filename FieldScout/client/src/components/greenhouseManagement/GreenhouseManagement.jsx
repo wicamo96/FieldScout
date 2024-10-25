@@ -5,6 +5,7 @@ import { Modal } from "reactstrap"
 import { addHouse, deleteHouse, editHouse } from "../../services/HousesService.jsx"
 import { addHouseToFacility, deleteFacilityHouse } from "../../services/FacilityHousesService.jsx"
 import { Link } from "react-router-dom"
+import './GreenhouseManagement.css'
 
 export const GreenhouseManagement = ({ currentUser }) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -90,8 +91,8 @@ export const GreenhouseManagement = ({ currentUser }) => {
         <h1>Loading</h1>
     :
         <>
-            <h1>{facility.name} Houses</h1>
-            <Table>
+            <h2 className="margin">{facility.name} Houses</h2>
+            <Table className="margin">
                 <thead>
                     <tr>
                         <th>
@@ -162,7 +163,7 @@ export const GreenhouseManagement = ({ currentUser }) => {
                     })}
                 </tbody>
             </Table>
-            <div>
+            <div className="margin">
                 <Button color="" onClick={toggle}>
                     Add New House
                 </Button>
