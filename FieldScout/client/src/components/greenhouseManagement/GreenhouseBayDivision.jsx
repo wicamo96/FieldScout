@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom"
 import { addBayDivision, deleteBayDivision, editBayDivision, getBayDivisionsByBayId } from "../../services/BayDivisionsService.jsx"
 import { getHouseById } from "../../services/HousesService.jsx"
 import { getBayById } from "../../services/BayServices.jsx"
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
+import { Button, Card, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
+import './GreenhouseManagement.css'
 
 export const GreenhouseBayDivision = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -108,101 +109,104 @@ export const GreenhouseBayDivision = () => {
             <h1>Loading</h1>
         :
             <>
-                <h1>{houseName}, {bayName} Divisions </h1>
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Name
-                            </th>
-                            <th></th>
-                            <th><Link to={`/greenhouseManagement/${houseId}`}>Return To Bays</Link></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {bayDivisions.map(division => {
-                            return (
-                                <tr>
-                                    <td>{division.name}</td>
-                                    <td>
-                                        <button onClick={() => toggleEdit(division)}><i className="fa-regular fa-pen-to-square" /></button>
-                                        <Modal isOpen={editModal} toggle={() => toggleEdit(division)}>
-                                            <ModalHeader toggle={() => toggleEdit("")}>Edit {title}</ModalHeader>
+                <Card className="cardFix">
+                    <h1>{houseName}, {bayName} Divisions </h1>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {bayDivisions.map(division => {
+                                return (
+                                    <tr>
+                                        <td>{division.name}</td>
+                                        <td>
+                                            <button onClick={() => toggleEdit(division)}><i className="fa-regular fa-pen-to-square" /></button>
+                                            <Modal isOpen={editModal} toggle={() => toggleEdit(division)}>
+                                                <ModalHeader toggle={() => toggleEdit("")}>Edit {title}</ModalHeader>
+                                                <ModalBody>
+                                                    <fieldset>
+                                                        <input
+                                                            type="text"
+                                                            value={divisionName}
+                                                            onChange={(e) => setDivisionName(e.target.value)}
+                                                            placeholder="House Name"
+                                                        />
+                                                    </fieldset>
+                                                </ModalBody>
+                                                <ModalFooter>
+                                                <Button color="primary" onClick={() => {
+                                                    let divisionObject = {
+                                                        id: divisionId,
+                                                        name: divisionName,
+                                                        bayId: bayId
+                                                    }
+                                                    handleEditDivisionSubmit(divisionObject)
+                                                }}>
+                                                    Submit Edit
+                                                </Button>
+                                                <Button color="secondary" onClick={() => toggleEdit("")}>
+                                                    Cancel
+                                                </Button>
+                                                </ModalFooter>
+                                            </Modal>
+                                        </td>
+                                        <td><button onClick={() => toggleDelete(division)}><i className="fa-solid fa-trash" /></button></td>
+                                        <Modal isOpen={deleteModal} toggle={() => toggleDelete(division)}>
+                                            <ModalHeader toggle={() => toggleDelete("")}>Delete {divisionName}</ModalHeader>
                                             <ModalBody>
-                                                <fieldset>
-                                                    <input
-                                                        type="text"
-                                                        value={divisionName}
-                                                        onChange={(e) => setDivisionName(e.target.value)}
-                                                        placeholder="House Name"
-                                                    />
-                                                </fieldset>
+                                                <div>
+                                                    Are you sure you want to delete {divisionName}?
+                                                </div>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="primary" onClick={() => {
-                                                let divisionObject = {
-                                                    id: divisionId,
-                                                    name: divisionName,
-                                                    bayId: bayId
-                                                }
-                                                handleEditDivisionSubmit(divisionObject)
+                                            <Button color="danger" onClick={() => {
+                                                handleDeleteDivision(divisionId)
                                             }}>
-                                                Submit Edit
+                                                Confirm Delete
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleEdit("")}>
+                                            <Button color="secondary" onClick={() => toggleDelete("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
                                         </Modal>
-                                    </td>
-                                    <td><button onClick={() => toggleDelete(division)}><i className="fa-solid fa-trash" /></button></td>
-                                    <Modal isOpen={deleteModal} toggle={() => toggleDelete(division)}>
-                                        <ModalHeader toggle={() => toggleDelete("")}>Delete {divisionName}</ModalHeader>
-                                        <ModalBody>
-                                            <div>
-                                                Are you sure you want to delete {divisionName}?
-                                            </div>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                        <Button color="danger" onClick={() => {
-                                            handleDeleteDivision(divisionId)
-                                        }}>
-                                            Confirm Delete
-                                        </Button>
-                                        <Button color="secondary" onClick={() => toggleDelete("")}>
-                                            Cancel
-                                        </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
-                <div>
-                    <Button onClick={() => toggle()}>Add New Division</Button>
-                    <Modal isOpen={modal} toggle={toggle}>
-                        <ModalHeader toggle={toggle}>New Bay Division</ModalHeader>
-                        <ModalBody>
-                            <fieldset>
-                                <input
-                                    type="text"
-                                    value={divisionName}
-                                    onChange={(e) => setDivisionName(e.target.value)}
-                                    placeholder="Divsion Name"
-                                />
-                            </fieldset>
-                        </ModalBody>
-                        <ModalFooter>
-                        <Button color="primary" onClick={() => handleBayDivisionSubmit()}>
-                            Add
-                        </Button>
-                        <Button color="secondary" onClick={toggle}>
-                            Cancel
-                        </Button>
-                        </ModalFooter>
-                    </Modal>
-                </div>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                    <div>
+                        <Button className="marginSmall greenButton" onClick={() => toggle()}>Add New Division</Button>
+                        <Modal isOpen={modal} toggle={toggle}>
+                            <ModalHeader toggle={toggle}>New Bay Division</ModalHeader>
+                            <ModalBody>
+                                <fieldset>
+                                    <input
+                                        type="text"
+                                        value={divisionName}
+                                        onChange={(e) => setDivisionName(e.target.value)}
+                                        placeholder="Divsion Name"
+                                    />
+                                </fieldset>
+                            </ModalBody>
+                            <ModalFooter>
+                            <Button color="primary" onClick={() => handleBayDivisionSubmit()}>
+                                Add
+                            </Button>
+                            <Button color="secondary" onClick={toggle}>
+                                Cancel
+                            </Button>
+                            </ModalFooter>
+                        </Modal>
+                    </div>
+                    <Link className="marginSmall" to={`/greenhouseManagement/${houseId}`}>Return To Bays</Link>
+                </Card>
             </>
         
 }

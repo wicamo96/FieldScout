@@ -6,12 +6,13 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import './NavBar.css';
 
 export const BasicNavbar = () => {
 
   return (
     <div>
-      <Navbar container='fluid'>
+      <Navbar className='navFix' container='fluid'>
         <NavbarBrand href="/">Field Scout</NavbarBrand>
         <Nav className="gap-x">
             <NavItem>
