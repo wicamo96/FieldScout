@@ -1,0 +1,16 @@
+.background {
+    height: 91.5vh;
+}
+
+.authCard {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    width: 30%;
+    background-color: var(--col-5);
+}
+
+.clear {
+    opacity: 0;
+}

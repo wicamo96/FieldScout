@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getBaysByHouseId } from "../../services/BayServices.jsx"
-import { useLocation, useParams } from "react-router-dom"
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
+import { Link, useLocation, useParams } from "react-router-dom"
+import { Button, Card, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
 import { getBayDivisionsByBayId } from "../../services/BayDivisionsService.jsx"
 import { getPests } from "../../services/PestsServices.jsx"
 import { deleteScoutingReport, editScoutingReport, getCurrentGrowingWeek, getScoutingReportBayIds, getScoutingReportByBayDivIdAndGrowingWeek, postScoutingReport } from "../../services/ScoutingReportServices.jsx"
@@ -177,254 +177,257 @@ export const ScoutingBays = ({ currentUser }) => {
         <div>loading</div>
     :
         <>
-            <h1>{house.name} Scouting Menu</h1>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Bay</th>
-                        <th>Add Data</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {baysList.map(bay => {
-                        return (
-                            <tr>
-                                <td>{bay.name}</td>
-                                <td>
-                                    <Button color="" onClick={() => toggle(bay)}>
-                                        <i className="fa-solid fa-plus" />
-                                    </Button>
-                                    <Modal isOpen={modal} toggle={() => toggle(bay)}>
-                                        <ModalHeader toggle={() => toggle()}>{bayObj.name} Scouting Report</ModalHeader>
-                                        <ModalBody>
-                                            {!bayIdsWithScoutingData[0]?.id ? 
-                                            <Table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pest</th>
-                                                        <th>Pressure Level</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {bayDivisions.map(division => {
-                                                        return (
-                                                            <>
-                                                                <tr bgcolor="lightgray">
-                                                                    <td>{division.name}</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                {pests.map(pest => {
-                                                                    return (
-                                                                        <tr>
-                                                                            <td>{pest.name}</td>
-                                                                            <td>
-                                                                                <select onChange={(e) => {
-                                                                                    let reportObj = {
-                                                                                        userProfileId: currentUser.id,
-                                                                                        pestId: pest.id,
-                                                                                        pressure: e.target.value,
-                                                                                        bayDivisionId: division.id,
-                                                                                        facilityId: currentUser.facilityId,
-                                                                                        bay: null,
-                                                                                        house: null
-                                                                                    }
-                                                                                    handleScoutingReport(reportObj)
-                                                                                    }}>
-                                                                                    <option selected disabled>Select Pressure</option>
-                                                                                    <option value={1}>Low</option>
-                                                                                    <option value={2}>Medium</option>
-                                                                                    <option value={3}>High</option>
-                                                                                </select>
-                                                                            </td>
-                                                                        </tr>
-                                                                    )
-                                                                })}
-                                                            </>
-                                                        )
-                                                    })}    
-                                                </tbody>
-                                            </Table>
-                                            :
-                                            bayIdsWithScoutingData.find(entry => entry.id === bayObj.id) ?
-                                            <div>Data already exists in this bay for week {growingWeek}</div>
-                                            :
-                                            <Table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pest</th>
-                                                        <th>Pressure Level</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {bayDivisions.map(division => {
-                                                        return (
-                                                            <>
-                                                                <tr bgcolor="lightgray">
-                                                                    <td>{division.name}</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                {pests.map(pest => {
-                                                                    return (
-                                                                        <tr>
-                                                                            <td>{pest.name}</td>
-                                                                            <td>
-                                                                                <select onChange={(e) => {
-                                                                                    let reportObj = {
-                                                                                        userProfileId: currentUser.id,
-                                                                                        pestId: pest.id,
-                                                                                        pressure: e.target.value,
-                                                                                        bayDivisionId: division.id,
-                                                                                        facilityId: currentUser.facilityId,
-                                                                                        bay: null,
-                                                                                        house: null
-                                                                                    }
-                                                                                    handleScoutingReport(reportObj)
-                                                                                    }}>
-                                                                                    <option selected disabled>Select Pressure</option>
-                                                                                    <option value={1}>Low</option>
-                                                                                    <option value={2}>Medium</option>
-                                                                                    <option value={3}>High</option>
-                                                                                </select>
-                                                                            </td>
-                                                                        </tr>
-                                                                    )
-                                                                })}
-                                                            </>
-                                                        )
-                                                    })}    
-                                                </tbody>
-                                            </Table>
-                                            }
-                                        </ModalBody>
-                                        <ModalFooter>
-                                        {!bayIdsWithScoutingData[0]?.id ? 
-                                            <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
-                                                Add
-                                            </Button>
-                                        : 
-                                        bayIdsWithScoutingData.find(entry => entry.id === bayObj.id) ? 
-                                        "" 
-                                        :
-                                            <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
-                                                Add
-                                            </Button>
-                                        }
-                                        <Button color="secondary" onClick={() => toggle()}>
-                                            Cancel
+            <Card className="cardFix">
+                <h1>{house.name} Scouting Menu</h1>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Bay</th>
+                            <th>Add Data</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {baysList.map(bay => {
+                            return (
+                                <tr>
+                                    <td>{bay.name}</td>
+                                    <td>
+                                        <Button color="" onClick={() => toggle(bay)}>
+                                            <i className="fa-solid fa-plus" />
                                         </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </td>
-                                <td>
-                                    <Button color="" onClick={() => toggleEdit(bay)} >
-                                        <i className="fa-regular fa-pen-to-square" />
-                                    </Button>
-                                    <Modal isOpen={editModal} toggle={() => toggleEdit(bay)}>
-                                        <ModalHeader toggle={() => toggleEdit()}>Edit</ModalHeader>
-                                        <ModalBody>
-                                            <Table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pest</th>
-                                                        <th>Pressure Level</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {bayDivisions.map(division => {
-                                                        return (
-                                                            <>
-                                                                <tr bgcolor="lightgray">
-                                                                    <td>{division.name}</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                {scoutingReport[0]?.id ?
-                                                                pests.map(pest => {
-                                                                    return (
-                                                                        <tr>
-                                                                            <td>{pest.name}</td>
-                                                                            <td>
-                                                                                <select onChange={(e) => {
-                                                                                    let reportObj = {
-                                                                                        bayDivisionId: division.id,
-                                                                                        pestId: pest.id,
-                                                                                        pressure: e.target.value,
-                                                                                        bay: null,
-                                                                                        house: null
-                                                                                    }
-                                                                                    handleEditScoutingReport(reportObj)
-                                                                                }}>
-                                                                                    <option disabled>Select Pressure</option>
-                                                                                    {scoutingReport.find(reportObj => reportObj.pestId === pest.id && reportObj.bayDivisionId === division.id)?.pressure === "1" ? <option selected value={1}>Low</option> : <option value={1}>Low</option>}
-                                                                                    {scoutingReport.find(reportObj => reportObj.pestId === pest.id && reportObj.bayDivisionId === division.id)?.pressure === "2" ? <option selected value={2}>Medium</option> : <option value={2}>Medium</option>}
-                                                                                    {scoutingReport.find(reportObj => reportObj.pestId === pest.id && reportObj.bayDivisionId === division.id)?.pressure === "3" ? <option selected value={3}>High</option> : <option value={3}>High</option>}
-                                                                                </select>
-                                                                            </td>
-                                                                        </tr>
-                                                                    )                                                                    
-                                                                })
-                                                                :
-                                                                <div>No Data</div>
-                                                                }
-                                                            </>
-                                                        )
-                                                    })}
-                                                </tbody>
-                                            </Table>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            {scoutingReport[0]?.id ? 
-                                                <Button color="warning"  onClick={() => handleSubmitEditedScoutingReport()}>
-                                                    Submit Edit
+                                        <Modal isOpen={modal} toggle={() => toggle(bay)}>
+                                            <ModalHeader toggle={() => toggle()}>{bayObj.name} Scouting Report</ModalHeader>
+                                            <ModalBody>
+                                                {!bayIdsWithScoutingData[0]?.id ? 
+                                                <Table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Pest</th>
+                                                            <th>Pressure Level</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {bayDivisions.map(division => {
+                                                            return (
+                                                                <>
+                                                                    <tr bgcolor="lightgray">
+                                                                        <td>{division.name}</td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    {pests.map(pest => {
+                                                                        return (
+                                                                            <tr>
+                                                                                <td>{pest.name}</td>
+                                                                                <td>
+                                                                                    <select onChange={(e) => {
+                                                                                        let reportObj = {
+                                                                                            userProfileId: currentUser.id,
+                                                                                            pestId: pest.id,
+                                                                                            pressure: e.target.value,
+                                                                                            bayDivisionId: division.id,
+                                                                                            facilityId: currentUser.facilityId,
+                                                                                            bay: null,
+                                                                                            house: null
+                                                                                        }
+                                                                                        handleScoutingReport(reportObj)
+                                                                                        }}>
+                                                                                        <option selected disabled>Select Pressure</option>
+                                                                                        <option value={1}>Low</option>
+                                                                                        <option value={2}>Medium</option>
+                                                                                        <option value={3}>High</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                            </tr>
+                                                                        )
+                                                                    })}
+                                                                </>
+                                                            )
+                                                        })}    
+                                                    </tbody>
+                                                </Table>
+                                                :
+                                                bayIdsWithScoutingData.find(entry => entry.id === bayObj.id) ?
+                                                <div>Data already exists in this bay for week {growingWeek}</div>
+                                                :
+                                                <Table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Pest</th>
+                                                            <th>Pressure Level</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {bayDivisions.map(division => {
+                                                            return (
+                                                                <>
+                                                                    <tr bgcolor="lightgray">
+                                                                        <td>{division.name}</td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    {pests.map(pest => {
+                                                                        return (
+                                                                            <tr>
+                                                                                <td>{pest.name}</td>
+                                                                                <td>
+                                                                                    <select onChange={(e) => {
+                                                                                        let reportObj = {
+                                                                                            userProfileId: currentUser.id,
+                                                                                            pestId: pest.id,
+                                                                                            pressure: e.target.value,
+                                                                                            bayDivisionId: division.id,
+                                                                                            facilityId: currentUser.facilityId,
+                                                                                            bay: null,
+                                                                                            house: null
+                                                                                        }
+                                                                                        handleScoutingReport(reportObj)
+                                                                                        }}>
+                                                                                        <option selected disabled>Select Pressure</option>
+                                                                                        <option value={1}>Low</option>
+                                                                                        <option value={2}>Medium</option>
+                                                                                        <option value={3}>High</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                            </tr>
+                                                                        )
+                                                                    })}
+                                                                </>
+                                                            )
+                                                        })}    
+                                                    </tbody>
+                                                </Table>
+                                                }
+                                            </ModalBody>
+                                            <ModalFooter>
+                                            {!bayIdsWithScoutingData[0]?.id ? 
+                                                <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
+                                                    Add
                                                 </Button>
+                                            : 
+                                            bayIdsWithScoutingData.find(entry => entry.id === bayObj.id) ? 
+                                            "" 
                                             :
-                                            ""    
+                                                <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
+                                                    Add
+                                                </Button>
                                             }
-                                            <Button color="secondary" onClick={() => toggleEdit()}>
+                                            <Button color="secondary" onClick={() => toggle()}>
                                                 Cancel
                                             </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </td>
-                                <td>
-                                    <Button color="" onClick={() => toggleDelete(bay)} >
-                                        <i className="fa-solid fa-trash" />
-                                    </Button>
-                                    <Modal isOpen={deleteModal} toggle={() => toggleDelete(bay)}>
-                                        <ModalHeader toggle={() => toggleDelete()}>Delete</ModalHeader>
-                                        {scoutingReport[0]?.id ?
-                                        <>
+                                            </ModalFooter>
+                                        </Modal>
+                                    </td>
+                                    <td>
+                                        <Button color="" onClick={() => toggleEdit(bay)} >
+                                            <i className="fa-regular fa-pen-to-square" />
+                                        </Button>
+                                        <Modal isOpen={editModal} toggle={() => toggleEdit(bay)}>
+                                            <ModalHeader toggle={() => toggleEdit()}>Edit</ModalHeader>
                                             <ModalBody>
-                                            Are you sure you want to delete week {growingWeek} scouting data for {bayObj.name}?
+                                                <Table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Pest</th>
+                                                            <th>Pressure Level</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {bayDivisions.map(division => {
+                                                            return (
+                                                                <>
+                                                                    <tr bgcolor="lightgray">
+                                                                        <td>{division.name}</td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    {scoutingReport[0]?.id ?
+                                                                    pests.map(pest => {
+                                                                        return (
+                                                                            <tr>
+                                                                                <td>{pest.name}</td>
+                                                                                <td>
+                                                                                    <select onChange={(e) => {
+                                                                                        let reportObj = {
+                                                                                            bayDivisionId: division.id,
+                                                                                            pestId: pest.id,
+                                                                                            pressure: e.target.value,
+                                                                                            bay: null,
+                                                                                            house: null
+                                                                                        }
+                                                                                        handleEditScoutingReport(reportObj)
+                                                                                    }}>
+                                                                                        <option disabled>Select Pressure</option>
+                                                                                        {scoutingReport.find(reportObj => reportObj.pestId === pest.id && reportObj.bayDivisionId === division.id)?.pressure === "1" ? <option selected value={1}>Low</option> : <option value={1}>Low</option>}
+                                                                                        {scoutingReport.find(reportObj => reportObj.pestId === pest.id && reportObj.bayDivisionId === division.id)?.pressure === "2" ? <option selected value={2}>Medium</option> : <option value={2}>Medium</option>}
+                                                                                        {scoutingReport.find(reportObj => reportObj.pestId === pest.id && reportObj.bayDivisionId === division.id)?.pressure === "3" ? <option selected value={3}>High</option> : <option value={3}>High</option>}
+                                                                                    </select>
+                                                                                </td>
+                                                                            </tr>
+                                                                        )                                                                    
+                                                                    })
+                                                                    :
+                                                                    <div>No Data</div>
+                                                                    }
+                                                                </>
+                                                            )
+                                                        })}
+                                                    </tbody>
+                                                </Table>
                                             </ModalBody>
                                             <ModalFooter>
-                                                <Button color="danger" onClick={() => handleSubmitDeleteScoutingReport()}>
-                                                    Confirm Delete
-                                                </Button>
-                                                <Button color="secondary" onClick={() => toggleDelete()}>
+                                                {scoutingReport[0]?.id ? 
+                                                    <Button color="warning"  onClick={() => handleSubmitEditedScoutingReport()}>
+                                                        Submit Edit
+                                                    </Button>
+                                                :
+                                                ""    
+                                                }
+                                                <Button color="secondary" onClick={() => toggleEdit()}>
                                                     Cancel
                                                 </Button>
                                             </ModalFooter>
-                                        </>
-                                        :
-                                        <>
-                                            <ModalBody>
-                                            No Data To Delete!
-                                            </ModalBody>
-                                            <ModalFooter>
-                                                <Button color="secondary" onClick={() => toggleDelete()}>
-                                                    Cancel
-                                                </Button>
-                                            </ModalFooter>
-                                        </>
-                                        }
-                                    </Modal>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
+                                        </Modal>
+                                    </td>
+                                    <td>
+                                        <Button color="" onClick={() => toggleDelete(bay)} >
+                                            <i className="fa-solid fa-trash" />
+                                        </Button>
+                                        <Modal isOpen={deleteModal} toggle={() => toggleDelete(bay)}>
+                                            <ModalHeader toggle={() => toggleDelete()}>Delete</ModalHeader>
+                                            {scoutingReport[0]?.id ?
+                                            <>
+                                                <ModalBody>
+                                                Are you sure you want to delete week {growingWeek} scouting data for {bayObj.name}?
+                                                </ModalBody>
+                                                <ModalFooter>
+                                                    <Button color="danger" onClick={() => handleSubmitDeleteScoutingReport()}>
+                                                        Confirm Delete
+                                                    </Button>
+                                                    <Button color="secondary" onClick={() => toggleDelete()}>
+                                                        Cancel
+                                                    </Button>
+                                                </ModalFooter>
+                                            </>
+                                            :
+                                            <>
+                                                <ModalBody>
+                                                No Data To Delete!
+                                                </ModalBody>
+                                                <ModalFooter>
+                                                    <Button color="secondary" onClick={() => toggleDelete()}>
+                                                        Cancel
+                                                    </Button>
+                                                </ModalFooter>
+                                            </>
+                                            }
+                                        </Modal>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+                <Link to={'/scouting'}>Return To House List</Link>
+            </Card>
         </>
 }

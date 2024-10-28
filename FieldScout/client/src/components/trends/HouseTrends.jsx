@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom"
 import { getBaysByHouseId } from "../../services/BayServices.jsx"
 import { getCurrentGrowingWeek, getScoutingReportTrends } from "../../services/ScoutingReportServices.jsx"
 import { getBayDivisionsByBayId } from "../../services/BayDivisionsService.jsx"
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
+import { Button, Card, CardBody, CardTitle, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
 import { getPests } from "../../services/PestsServices.jsx"
 import * as d3 from 'd3'
+import './Trends.css'
 
 export const HouseTrends = ({ currentUser }) => {
     const [modal, setModal] = useState(false)
@@ -193,88 +194,94 @@ export const HouseTrends = ({ currentUser }) => {
 
     return (
         <>
-            <Table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th><h3>{house.name}</h3></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select onChange={(e) => setPestId(e.target.value)}>
-                                <option selected disabled>Select Pest</option>
-                                {pestList.map(pest => {
-                                    return (
-                                        <option value={pest.id}>{pest.name}</option>
-                                    )
-                                })}
-                            </select>
-                        </td>
-                        <td>
-                            <select onChange={(e) => parseTimeFrame(e.target.value)}>
-                                <option selected disabled>Select Time Frame</option>
-                                <option value={1}>2 Weeks</option>
-                                <option value={2}>3 Weeks</option>
-                                <option value={3}>4 Weeks</option>
-                                <option value={4}>5 Weeks</option>
-                                <option value={5}>6 Weeks</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select onChange={(e) => setBayId(e.target.value)}>
-                                {bayList[0]?.id ?
-                                <>
-                                    <option selected disabled>Select Bay</option>
-                                    <option value={0}>None</option>
-                                    {bayList?.map(bay => {
-                                        return (
-                                            <option value={bay.id}>{bay.name}</option>
-                                        )
-                                    })}
-                                </>
-                                :
-                                ""
-                                }
-                            </select>
-                        </td>
-                        <td>
-                            <select onChange={(e) => setBayDivId(e.target.value)}>
-                                {bayDivList[0]?.id ?
-                                <>
-                                    <option selected disabled>Select Bay Division</option>
-                                    <option value={0}>None</option>
-                                    {bayDivList?.map(div => {
-                                        return (
-                                            <option value={div.id}>{div.name}</option>
-                                        )
-                                    })}
-                                </>
-                                :
-                                <option selected disabled>Chose Bay To Select Div</option>
-                                }
-                            </select>
-                        </td>
-                        <td>
-                            <button onClick={handleFetchData}>View Trends</button>
-                        </td>
-                    </tr>
-                    <Modal isOpen={modal} toggle={toggle}>
-                        <ModalHeader toggle={toggle}>Data Error</ModalHeader>
-                        <ModalBody>
-                            You Must Select A Pest And Time Frame <strong>Minimum</strong> Before Viewing Trends!
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="secondary" onClick={toggle}>Close</Button>
-                        </ModalFooter>
-                    </Modal>
-                </thead>
-            </Table>
-            <svg ref={svgRef}>
-                <g className="x-axis" />
-            </svg>
+            <Card className="trendsCard">
+                <CardTitle>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th><h3>{house.name}</h3></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select onChange={(e) => setPestId(e.target.value)}>
+                                        <option selected disabled>Select Pest</option>
+                                        {pestList.map(pest => {
+                                            return (
+                                                <option value={pest.id}>{pest.name}</option>
+                                            )
+                                        })}
+                                    </select>
+                                </td>
+                                <td>
+                                    <select onChange={(e) => parseTimeFrame(e.target.value)}>
+                                        <option selected disabled>Select Time Frame</option>
+                                        <option value={1}>2 Weeks</option>
+                                        <option value={2}>3 Weeks</option>
+                                        <option value={3}>4 Weeks</option>
+                                        <option value={4}>5 Weeks</option>
+                                        <option value={5}>6 Weeks</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select onChange={(e) => setBayId(e.target.value)}>
+                                        {bayList[0]?.id ?
+                                        <>
+                                            <option selected disabled>Select Bay</option>
+                                            <option value={0}>None</option>
+                                            {bayList?.map(bay => {
+                                                return (
+                                                    <option value={bay.id}>{bay.name}</option>
+                                                )
+                                            })}
+                                        </>
+                                        :
+                                        ""
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <select onChange={(e) => setBayDivId(e.target.value)}>
+                                        {bayDivList[0]?.id ?
+                                        <>
+                                            <option selected disabled>Select Bay Division</option>
+                                            <option value={0}>None</option>
+                                            {bayDivList?.map(div => {
+                                                return (
+                                                    <option value={div.id}>{div.name}</option>
+                                                )
+                                            })}
+                                        </>
+                                        :
+                                        <option selected disabled>Chose Bay To Select Div</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <Button className="greenButton" onClick={handleFetchData}>View Trends</Button>
+                                </td>
+                            </tr>
+                            <Modal isOpen={modal} toggle={toggle}>
+                                <ModalHeader toggle={toggle}>Data Error</ModalHeader>
+                                <ModalBody>
+                                    You Must Select A Pest And Time Frame <strong>Minimum</strong> Before Viewing Trends!
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="secondary" onClick={toggle}>Close</Button>
+                                </ModalFooter>
+                            </Modal>
+                        </thead>
+                    </Table>
+                </CardTitle>
+                <CardBody>
+                    <svg ref={svgRef}>
+                        <g className="x-axis" />
+                    </svg>
+                </CardBody>
+            </Card>
         </>
     )
 }

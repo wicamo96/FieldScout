@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { addPest, deletePest, editPest, getPests } from "../../services/PestsServices.jsx"
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
+import { Button, Card, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
 import './PestManagement.css'
 
 export const PestManagement = () => {
@@ -71,103 +71,105 @@ export const PestManagement = () => {
         <h1>Loading</h1>
     :
         <>
-            <h2 className="margin">Pests</h2>
-            <Table className="margin">
-                <thead>
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {pestList.map(pest => {
-                        return (
-                            <tr>
-                                <td>{pest.name}</td>
-                                <td>
-                                    <button onClick={() => toggleEdit(pest)}><i className="fa-regular fa-pen-to-square"></i></button>
-                                    <Modal isOpen={editModal} toggle={() => toggleEdit(pest)}>
-                                        <ModalHeader toggle={() => toggleEdit("")}>Edit {title}</ModalHeader>
-                                        <ModalBody>
-                                            <fieldset>
-                                                <input
-                                                    type="text"
-                                                    value={pestName}
-                                                    onChange={(e) => setPestName(e.target.value)}
-                                                    placeholder="Pest Name"
-                                                />
-                                            </fieldset>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                        <Button color="primary" onClick={() => {
-                                            let pestObject = {
-                                                id: pestId,
-                                                name: pestName
-                                            }
-                                            handleEditPestSubmit(pestObject)
-                                        }}>
-                                            Submit Edit
-                                        </Button>
-                                        <Button color="secondary" onClick={() => toggleEdit("")}>
-                                            Cancel
-                                        </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </td>
-                                <td>
-                                    <button onClick={() => toggleDelete(pest)}><i className="fa-solid fa-trash" /></button>
-                                    <Modal isOpen={deleteModal} toggle={() => toggleDelete(pest)}>
-                                        <ModalHeader toggle={() => toggleDelete("")}>Delete {pestName}</ModalHeader>
-                                        <ModalBody>
-                                            <div>
-                                                Are you sure you want to delete {pestName}?
-                                            </div>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                        <Button color="danger" onClick={() => {
-                                            handleDeletePestSubmit(pestId)
-                                        }}>
-                                            Confirm Delete
-                                        </Button>
-                                        <Button color="secondary" onClick={() => toggleDelete("")}>
-                                            Cancel
-                                        </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
-            <div>
-                <Button className="margin" onClick={() => toggle()}>
-                    Add New Pest
-                </Button>
-                <Modal isOpen={modal} toggle={toggle}>
-                    <ModalHeader toggle={toggle}>New Pest</ModalHeader>
-                    <ModalBody>
-                        <fieldset>
-                            <input
-                                type="text"
-                                value={pestName}
-                                onChange={(e) => setPestName(e.target.value)}
-                                placeholder="Pest Name"
-                            />
-                        </fieldset>
-                    </ModalBody>
-                    <ModalFooter>
-                    <Button color="primary" onClick={() => handleAddPest()}>
-                        Add
+            <Card className="cardFix">
+                <h2 className="margin">Pests</h2>
+                <Table className="margin">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {pestList.map(pest => {
+                            return (
+                                <tr>
+                                    <td>{pest.name}</td>
+                                    <td>
+                                        <button onClick={() => toggleEdit(pest)}><i className="fa-regular fa-pen-to-square"></i></button>
+                                        <Modal isOpen={editModal} toggle={() => toggleEdit(pest)}>
+                                            <ModalHeader toggle={() => toggleEdit("")}>Edit {title}</ModalHeader>
+                                            <ModalBody>
+                                                <fieldset>
+                                                    <input
+                                                        type="text"
+                                                        value={pestName}
+                                                        onChange={(e) => setPestName(e.target.value)}
+                                                        placeholder="Pest Name"
+                                                    />
+                                                </fieldset>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                            <Button color="primary" onClick={() => {
+                                                let pestObject = {
+                                                    id: pestId,
+                                                    name: pestName
+                                                }
+                                                handleEditPestSubmit(pestObject)
+                                            }}>
+                                                Submit Edit
+                                            </Button>
+                                            <Button color="secondary" onClick={() => toggleEdit("")}>
+                                                Cancel
+                                            </Button>
+                                            </ModalFooter>
+                                        </Modal>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => toggleDelete(pest)}><i className="fa-solid fa-trash" /></button>
+                                        <Modal isOpen={deleteModal} toggle={() => toggleDelete(pest)}>
+                                            <ModalHeader toggle={() => toggleDelete("")}>Delete {pestName}</ModalHeader>
+                                            <ModalBody>
+                                                <div>
+                                                    Are you sure you want to delete {pestName}?
+                                                </div>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                            <Button color="danger" onClick={() => {
+                                                handleDeletePestSubmit(pestId)
+                                            }}>
+                                                Confirm Delete
+                                            </Button>
+                                            <Button color="secondary" onClick={() => toggleDelete("")}>
+                                                Cancel
+                                            </Button>
+                                            </ModalFooter>
+                                        </Modal>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+                <div>
+                    <Button className="margin greenButton" onClick={() => toggle()}>
+                        Add New Pest
                     </Button>
-                    <Button color="secondary" onClick={toggle}>
-                        Cancel
-                    </Button>
-                    </ModalFooter>
-                </Modal>
-            </div>
+                    <Modal isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>New Pest</ModalHeader>
+                        <ModalBody>
+                            <fieldset>
+                                <input
+                                    type="text"
+                                    value={pestName}
+                                    onChange={(e) => setPestName(e.target.value)}
+                                    placeholder="Pest Name"
+                                />
+                            </fieldset>
+                        </ModalBody>
+                        <ModalFooter>
+                        <Button color="primary" onClick={() => handleAddPest()}>
+                            Add
+                        </Button>
+                        <Button color="secondary" onClick={toggle}>
+                            Cancel
+                        </Button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
+            </Card>
         </>
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getCurrentGrowingWeek } from "../../services/ScoutingReportServices.jsx"
 import { getByIdWithHouses } from "../../services/FacilityServices.jsx"
 import { getPests } from "../../services/PestsServices.jsx"
-import { Table } from "reactstrap"
+import { Card, CardBody, CardTitle, Table } from "reactstrap"
 import { DashboardGraph } from "./DashboardGraph.jsx"
 import './Dashboard.css'
 
@@ -52,18 +52,23 @@ export const Dashboard = ({ currentUser }) => {
         <div>Loading!</div>
     :
         <>
-            <h1>{facility.name} Week {growingWeek}</h1>
-            <label>Select A House to View Last 4 Weeks Of Data
-                <select onClick={(e) => setHouseSelection(e.target.value)}>
-                    <option selected disabled>Filter By House</option>
-                    {houseList?.map(house => {
-                        return (
-                            <option value={house.id}>{house.name}</option>
-                        )
-                    })}
-                </select>
-            </label>
-            <table>
+            <h2>{facility.name} Week {growingWeek}</h2>
+            <Card className="smallCard">
+                <CardTitle>
+                    <h5>Select A House to View Last 4 Weeks Of Data</h5>
+                </CardTitle>
+                <CardBody>
+                    <select onClick={(e) => setHouseSelection(e.target.value)}>
+                        <option selected disabled>Filter By House</option>
+                        {houseList?.map(house => {
+                            return (
+                                <option value={house.id}>{house.name}</option>
+                            )
+                        })}
+                    </select>
+                </CardBody>
+            </Card>
+            <table className="center">
                 <thead>
                     <tr>
                         <td></td>
@@ -72,23 +77,53 @@ export const Dashboard = ({ currentUser }) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><DashboardGraph pest={pests[0]} houseId={houseSelection} growingWeek={growingWeek} /></td>
-                        <td></td>
-                        <td><DashboardGraph pest={pests[1]} houseId={houseSelection} growingWeek={growingWeek} /></td>
+                        <td className="padding">
+                            <Card className="cardSize">
+                                <CardBody className="padding">
+                                    <DashboardGraph pest={pests[0]} houseId={houseSelection} growingWeek={growingWeek} />
+                                </CardBody>
+                            </Card>
+                        </td>
+                        <td className="padding">
+                            <Card className="cardSize">
+                                <CardBody className="padding">
+                                    <DashboardGraph pest={pests[1]} houseId={houseSelection} growingWeek={growingWeek} />
+                                </CardBody>
+                            </Card>
+                        </td>                      
                     </tr>
                     <tr>
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><DashboardGraph pest={pests[2]} houseId={houseSelection} growingWeek={growingWeek} /></td>
-                        <td></td>
-                        <td><DashboardGraph pest={pests[3]} houseId={houseSelection} growingWeek={growingWeek} /></td>
+                        <td className="padding">
+                            <Card className="cardSize">
+                                <CardBody className="padding">
+                                    <DashboardGraph pest={pests[2]} houseId={houseSelection} growingWeek={growingWeek} />
+                                </CardBody>
+                            </Card>
+                        </td>
+                        <td className="padding">
+                            <Card className="cardSize">
+                                <CardBody className="padding">
+                                    <DashboardGraph pest={pests[3]} houseId={houseSelection} growingWeek={growingWeek} />
+                                </CardBody>
+                            </Card>
+                        </td>
                     </tr>
                     <tr className="secondary">
                         <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><DashboardGraph pest={pests[4]} houseId={houseSelection} growingWeek={growingWeek} /></td>
+                        <td className="padding">
+                            <Card className="cardSize">
+                                <CardBody className="padding">
+                                    <DashboardGraph pest={pests[4]} houseId={houseSelection} growingWeek={growingWeek} />
+                                </CardBody>
+                            </Card>
+                        </td>
                         <td></td>
                     </tr>
                 </tbody>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Button, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
+import { Button, Card, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
 import { getByIdWithHouses } from "../../services/FacilityServices.jsx"
 import { Modal } from "reactstrap"
 import { addHouse, deleteHouse, editHouse } from "../../services/HousesService.jsx"
@@ -91,103 +91,105 @@ export const GreenhouseManagement = ({ currentUser }) => {
         <h1>Loading</h1>
     :
         <>
-            <h2 className="margin">{facility.name} Houses</h2>
-            <Table className="margin">
-                <thead>
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {isLoading ? <div>loading</div> : houses?.map(house => {
-                        return (
-                            <tr value={house.id}>
-                                <td><Link to={{pathname: `/greenhouseManagement/${house.id}`, state: { house: house}}}>{house.name}</Link></td>
-                                <td>
-                                    <button onClick={() => toggleEdit(house)}><i className="fa-regular fa-pen-to-square"></i></button>
-                                    <Modal isOpen={editModal} toggle={() => toggleEdit(house)}>
-                                        <ModalHeader toggle={() => toggleEdit("")}>Edit {houseName}</ModalHeader>
-                                        <ModalBody>
-                                            <fieldset>
-                                                <input
-                                                    type="text"
-                                                    value={newHouse}
-                                                    onChange={(e) => setNewHouse(e.target.value)}
-                                                    placeholder="House Name"
-                                                />
-                                            </fieldset>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                        <Button color="primary" onClick={() => {
-                                            let houseObject = {
-                                                id: houseId,
-                                                name: newHouse
-                                            }
-                                            handleEditHouseSubmit(houseObject)
-                                        }}>
-                                            Submit Edit
-                                        </Button>
-                                        <Button color="secondary" onClick={() => toggleEdit("")}>
-                                            Cancel
-                                        </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </td>
-                                <td>
-                                    <button onClick={() => toggleDelete(house)}><i className="fa-solid fa-trash" /></button>
-                                    <Modal isOpen={deleteModal} toggle={() => toggleDelete(house)}>
-                                        <ModalHeader toggle={() => toggleDelete("")}>Delete {houseName}</ModalHeader>
-                                        <ModalBody>
-                                            <div>
-                                                Are you sure you want to delete {houseName}?
-                                            </div>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                        <Button color="danger" onClick={() => {
-                                            handleDeleteHouse(houseId)
-                                        }}>
-                                            Confirm Delete
-                                        </Button>
-                                        <Button color="secondary" onClick={() => toggleDelete("")}>
-                                            Cancel
-                                        </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
-            <div className="margin">
-                <Button color="" onClick={toggle}>
-                    Add New House
-                </Button>
-                <Modal isOpen={modal} toggle={toggle}>
-                    <ModalHeader toggle={toggle}>New House</ModalHeader>
-                    <ModalBody>
-                        <fieldset>
-                            <input
-                                type="text"
-                                value={newHouse}
-                                onChange={(e) => setNewHouse(e.target.value)}
-                                placeholder="House Name"
-                            />
-                        </fieldset>
-                    </ModalBody>
-                    <ModalFooter>
-                    <Button color="primary" onClick={() => addHouseToTables()}>
-                        Add
+            <Card className="cardFix">
+                <h2 className="margin">{facility.name} Houses</h2>
+                <Table className="margin">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {isLoading ? <div>loading</div> : houses?.map(house => {
+                            return (
+                                <tr value={house.id}>
+                                    <td><Link to={{pathname: `/greenhouseManagement/${house.id}`, state: { house: house}}}>{house.name}</Link></td>
+                                    <td>
+                                        <button onClick={() => toggleEdit(house)}><i className="fa-regular fa-pen-to-square"></i></button>
+                                        <Modal isOpen={editModal} toggle={() => toggleEdit(house)}>
+                                            <ModalHeader toggle={() => toggleEdit("")}>Edit {houseName}</ModalHeader>
+                                            <ModalBody>
+                                                <fieldset>
+                                                    <input
+                                                        type="text"
+                                                        value={newHouse}
+                                                        onChange={(e) => setNewHouse(e.target.value)}
+                                                        placeholder="House Name"
+                                                    />
+                                                </fieldset>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                            <Button color="primary" onClick={() => {
+                                                let houseObject = {
+                                                    id: houseId,
+                                                    name: newHouse
+                                                }
+                                                handleEditHouseSubmit(houseObject)
+                                            }}>
+                                                Submit Edit
+                                            </Button>
+                                            <Button color="secondary" onClick={() => toggleEdit("")}>
+                                                Cancel
+                                            </Button>
+                                            </ModalFooter>
+                                        </Modal>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => toggleDelete(house)}><i className="fa-solid fa-trash" /></button>
+                                        <Modal isOpen={deleteModal} toggle={() => toggleDelete(house)}>
+                                            <ModalHeader toggle={() => toggleDelete("")}>Delete {houseName}</ModalHeader>
+                                            <ModalBody>
+                                                <div>
+                                                    Are you sure you want to delete {houseName}?
+                                                </div>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                            <Button color="danger" onClick={() => {
+                                                handleDeleteHouse(houseId)
+                                            }}>
+                                                Confirm Delete
+                                            </Button>
+                                            <Button color="secondary" onClick={() => toggleDelete("")}>
+                                                Cancel
+                                            </Button>
+                                            </ModalFooter>
+                                        </Modal>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+                <div className="margin">
+                    <Button className="greenButton" onClick={toggle}>
+                        Add New House
                     </Button>
-                    <Button color="secondary" onClick={toggle}>
-                        Cancel
-                    </Button>
-                    </ModalFooter>
-                </Modal>
-            </div>
+                    <Modal isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>New House</ModalHeader>
+                        <ModalBody>
+                            <fieldset>
+                                <input
+                                    type="text"
+                                    value={newHouse}
+                                    onChange={(e) => setNewHouse(e.target.value)}
+                                    placeholder="House Name"
+                                />
+                            </fieldset>
+                        </ModalBody>
+                        <ModalFooter>
+                        <Button color="primary" onClick={() => addHouseToTables()}>
+                            Add
+                        </Button>
+                        <Button color="secondary" onClick={toggle}>
+                            Cancel
+                        </Button>
+                        </ModalFooter>
+                    </Modal>
+                </div>
+            </Card>
         </>
 }

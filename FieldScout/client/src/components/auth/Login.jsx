@@ -3,6 +3,8 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Card, CardBody, CardTitle } from "reactstrap"
 import { getUserByEmail } from "../../services/UserServices.jsx"
+import './Auth.css'
+import backgroundImage from '../../static/HostaPhoto.jpg'
 
 
 export const Login = () => {
@@ -36,18 +38,26 @@ export const Login = () => {
 
     return (
         <>
-            <main>
-                <h1>Field Scout</h1>
+            <main className="background" style={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: `cover`,
+                backgroundPosition: `center`
+            }}>
+                <h1 className="clear">Field Scout</h1>
                 <section>
                     <form onSubmit={handleLogin}>
-                        <Card>
+                        <Card className="authCard">
+                            <CardTitle>
+                                
+                            </CardTitle>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>Please Sign In</h2>
+                                    <h3>Please Sign In</h3>
                                 </CardTitle>
                                 <fieldset>
                                     <div>
                                         <input 
+                                        className="marginSmall"
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
@@ -59,15 +69,16 @@ export const Login = () => {
                                 </fieldset>
                                 <fieldset>
                                     <div>
-                                        <Button>Sign In</Button>
+                                        <Button className="marginSmall greenButton">Sign In</Button>
                                     </div>
                                 </fieldset>
                             </CardBody>
+                            <Link to="/register">Not A Member?</Link>
                         </Card>
                     </form>
                 </section>
                 <section>
-                    <Link to="/register">Not A Member?</Link>
+                    
                 </section>
             </main>
         </>

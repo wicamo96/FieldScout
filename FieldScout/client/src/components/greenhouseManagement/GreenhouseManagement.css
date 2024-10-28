@@ -1,8 +1,25 @@
+.cardFix {
+    height: 90vh;
+    background-color: var(--col-5);
+}
+
 .center {
     display: flex;
     justify-content: center;
 }
 
+.greenButton {
+    background-color: var(--col-1);
+}
+
 .margin {
     margin-top: 3rem;
+}
+
+.marginSmall {
+    margin-top: 1rem;
+}
+
+.modalColor {
+    background-color: var(--col-3);
 }
