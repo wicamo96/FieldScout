@@ -51,7 +51,9 @@ export const ApplicationNavbar = () => {
                             </NavLink>
                         </DropdownItem>
                         <DropdownItem>
-                            Heat Maps
+                            <NavLink href="/map">
+                                Heat Map
+                            </NavLink>
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
