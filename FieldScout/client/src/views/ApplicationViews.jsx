@@ -11,7 +11,7 @@ import { ScoutingBays } from "../components/scouting/ScoutingBays.jsx"
 import { TrendsHouseList } from "../components/trends/TrendsHouseList.jsx"
 import { HouseTrends } from "../components/trends/HouseTrends.jsx"
 import { FacilityMap } from "../components/heatMap/FacilityMap.jsx"
-import { HeatMap } from "../components/heatMap/heatMap.jsx"
+import { HeatMap } from "../components/heatMap/HeatMap.jsx"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
