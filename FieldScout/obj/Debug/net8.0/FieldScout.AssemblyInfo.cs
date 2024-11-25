@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FieldScout")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d00870d4cb508e4474397441e8c6cbb5b4a076e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90d2773246c0edb48187ab0e73ed49651c379265")]
 [assembly: System.Reflection.AssemblyProductAttribute("FieldScout")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FieldScout")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -48,6 +48,36 @@ namespace FieldScout.Repositories
             }
         }
 
+        public List<int> GetGrowingWeeksByHouseId(int houseId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT DISTINCT GrowingWeek FROM ScoutingReport s
+                                        LEFT JOIN BayDivisions bd ON bd.Id = s.BayDivisionId
+                                        LEFT JOIN Bays b ON b.Id = bd.BayId
+                                        LEFT JOIN HouseBays hb ON hb.BayId = b.Id
+                                        WHERE hb.HouseId = @HouseId";
+
+                    DbUtils.AddParameter(cmd, "HouseId", houseId);
+
+                    var reader = cmd.ExecuteReader();
+                    var weeks = new List<int>();
+
+                    while (reader.Read())
+                    {
+                        weeks.Add(DbUtils.GetInt(reader, "GrowingWeek"));
+                    }
+
+                    reader.Close();
+
+                    return weeks;
+                }
+            }
+        }
+
         public List<ScoutingReport> GetBayScoutingReportByGrowingWeek(int growingWeek, int bayDivisionId)
         {
             using (var conn = Connection)

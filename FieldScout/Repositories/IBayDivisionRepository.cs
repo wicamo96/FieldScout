@@ -9,5 +9,6 @@ namespace FieldScout.Repositories
         void Delete(int id);
         List<BayDivisions> Get();
         List<BayDivisions> GetByBayId(int bayId);
+        List<BayDivisions> GetByHouseIdWithScoutingReport(int houseId, int growingWeek, int pestId);
     }
 }

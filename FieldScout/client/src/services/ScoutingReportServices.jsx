@@ -14,6 +14,10 @@ export const getCurrentGrowingWeek = () => {
     return fetch(`${baseUrl}/GetGrowingWeek`).then(res => res.json())
 }
 
+export const getGrowingWeeksByHouseId = (houseId) => {
+    return fetch(`${baseUrl}/GetGrowingWeeksByHouseId/${houseId}`).then(res => res.json())
+}
+
 export const getScoutingReportByBayDivIdAndGrowingWeek = (growingWeek, bayDivisionId) => {
     return fetch(`${baseUrl}/${bayDivisionId}/${growingWeek}`).then(res => res.json())
 }

@@ -48,6 +48,18 @@ namespace FieldScout.Controllers
             return Ok(bayDivisions);
         }
 
+        [HttpGet("GetBDByHouseIdWithScoutingReport/{houseId}/{growingWeek}/{pestId}")]
+        public IActionResult GetByHouseIdWithScoutingReport(int houseId, int growingWeek, int pestId)
+        {
+            var bayDivisions = _bayDivisionRepository.GetByHouseIdWithScoutingReport(houseId, growingWeek, pestId);
+            if (bayDivisions == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(bayDivisions);
+        }
+
         // GET api/<BayDivisionsController>/5
         [HttpGet("{id}")]
         public string Get(int id)
