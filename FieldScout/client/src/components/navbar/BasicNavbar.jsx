@@ -13,13 +13,13 @@ export const BasicNavbar = () => {
   return (
     <div>
       <Navbar className='navFix' container='fluid'>
-        <NavbarBrand href="/">Field Scout</NavbarBrand>
+        <NavbarBrand className='navBrand' href="/">Field Scout</NavbarBrand>
         <Nav className="gap-x">
             <NavItem>
-                <NavLink href="/login">Log In</NavLink>
+                <NavLink className='navText' href="/login">Log In</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink href="/register">
+                <NavLink className='navText' href="/register">
                 Register
                 </NavLink>
             </NavItem>

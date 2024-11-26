@@ -38,48 +38,47 @@ export const Login = () => {
 
     return (
         <>
-            <main className="background" style={{
+            <main className="background">
+                <article className="backgroundImage" style={{
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: `cover`,
                 backgroundPosition: `center`
-            }}>
-                <h1 className="clear">Field Scout</h1>
-                <section>
-                    <form onSubmit={handleLogin}>
-                        <Card className="authCard">
-                            <CardTitle>
-                                
-                            </CardTitle>
-                            <CardBody>
+                }}>
+                    <h1 className="clear">Field Scout</h1>
+                    <section>
+                        <form onSubmit={handleLogin}>
+                            <Card className="loginCard">
                                 <CardTitle>
-                                    <h3>Please Sign In</h3>
+                                    
                                 </CardTitle>
-                                <fieldset>
-                                    <div>
-                                        <input 
-                                        className="marginSmall"
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="Email address"
-                                        required
-                                        autoFocus
-                                        />
-                                    </div>
-                                </fieldset>
-                                <fieldset>
-                                    <div>
-                                        <Button className="marginSmall greenButton">Sign In</Button>
-                                    </div>
-                                </fieldset>
-                            </CardBody>
-                            <Link to="/register">Not A Member?</Link>
-                        </Card>
-                    </form>
-                </section>
-                <section>
-                    
-                </section>
+                                <CardBody>
+                                    <CardTitle>
+                                        <h3>Please Sign In</h3>
+                                    </CardTitle>
+                                    <fieldset>
+                                        <div>
+                                            <input 
+                                            className="marginSmall input"
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            placeholder="Email address"
+                                            required
+                                            autoFocus
+                                            />
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div>
+                                            <Button className="marginSmall greenButton">Sign In</Button>
+                                        </div>
+                                    </fieldset>
+                                </CardBody>
+                                <Link to="/register">Not A Member?</Link>
+                            </Card>
+                        </form>
+                    </section>
+                </article>
             </main>
         </>
     )
