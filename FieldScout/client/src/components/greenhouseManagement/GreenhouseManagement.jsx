@@ -90,27 +90,26 @@ export const GreenhouseManagement = ({ currentUser }) => {
     return isLoading ?
         <h1>Loading</h1>
     :
-        <>
-            <Card className="cardFix">
-                <h2 className="margin">{facility.name} Houses</h2>
-                <Table className="margin">
+        <main className="background">
+            <article className="gmBackground">
+                <Table>
                     <thead>
                         <tr>
+                            <th>{facility.name}</th>
+                            <th></th>
                             <th>
-                                Name
+                                <button className="buttonWSymbol" onClick={toggle}><i class="fa-solid fa-plus"></i></button>
                             </th>
-                            <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {isLoading ? <div>loading</div> : houses?.map(house => {
                             return (
                                 <tr value={house.id}>
-                                    <td><Link to={{pathname: `/greenhouseManagement/${house.id}`, state: { house: house}}}>{house.name}</Link></td>
+                                    <td><Link className="gmText" to={{pathname: `/greenhouseManagement/${house.id}`, state: { house: house}}}>{house.name} Bays</Link></td>
                                     <td>
-                                        <button onClick={() => toggleEdit(house)}><i className="fa-regular fa-pen-to-square"></i></button>
-                                        <Modal isOpen={editModal} toggle={() => toggleEdit(house)}>
+                                        <button className="buttonWSymbol" onClick={() => toggleEdit(house)}><i className="fa-regular fa-pen-to-square"></i></button>
+                                        <Modal className="modalFix" isOpen={editModal} toggle={() => toggleEdit(house)}>
                                             <ModalHeader toggle={() => toggleEdit("")}>Edit {houseName}</ModalHeader>
                                             <ModalBody>
                                                 <fieldset>
@@ -123,7 +122,7 @@ export const GreenhouseManagement = ({ currentUser }) => {
                                                 </fieldset>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="primary" onClick={() => {
+                                            <Button className="greenButton" onClick={() => {
                                                 let houseObject = {
                                                     id: houseId,
                                                     name: newHouse
@@ -132,14 +131,14 @@ export const GreenhouseManagement = ({ currentUser }) => {
                                             }}>
                                                 Submit Edit
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleEdit("")}>
+                                            <Button className="cancelButton" onClick={() => toggleEdit("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
                                         </Modal>
                                     </td>
                                     <td>
-                                        <button onClick={() => toggleDelete(house)}><i className="fa-solid fa-trash" /></button>
+                                        <button className="buttonWSymbol" onClick={() => toggleDelete(house)}><i className="fa-solid fa-trash" /></button>
                                         <Modal isOpen={deleteModal} toggle={() => toggleDelete(house)}>
                                             <ModalHeader toggle={() => toggleDelete("")}>Delete {houseName}</ModalHeader>
                                             <ModalBody>
@@ -148,12 +147,12 @@ export const GreenhouseManagement = ({ currentUser }) => {
                                                 </div>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="danger" onClick={() => {
+                                            <Button className="deleteButton" color="danger" onClick={() => {
                                                 handleDeleteHouse(houseId)
                                             }}>
                                                 Confirm Delete
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleDelete("")}>
+                                            <Button className="cancelButton" onClick={() => toggleDelete("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
@@ -165,10 +164,7 @@ export const GreenhouseManagement = ({ currentUser }) => {
                     </tbody>
                 </Table>
                 <div className="margin">
-                    <Button className="greenButton" onClick={toggle}>
-                        Add New House
-                    </Button>
-                    <Modal isOpen={modal} toggle={toggle}>
+                    <Modal className="modalFix" isOpen={modal} toggle={toggle}>
                         <ModalHeader toggle={toggle}>New House</ModalHeader>
                         <ModalBody>
                             <fieldset>
@@ -181,15 +177,15 @@ export const GreenhouseManagement = ({ currentUser }) => {
                             </fieldset>
                         </ModalBody>
                         <ModalFooter>
-                        <Button color="primary" onClick={() => addHouseToTables()}>
+                        <Button className="greenButton" onClick={() => addHouseToTables()}>
                             Add
                         </Button>
-                        <Button color="secondary" onClick={toggle}>
+                        <Button className="cancelButton" onClick={toggle}>
                             Cancel
                         </Button>
                         </ModalFooter>
                     </Modal>
                 </div>
-            </Card>
-        </>
+            </article>
+        </main>
 }

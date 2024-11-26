@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\baydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\baydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\willc\\AppData\\Local\\Temp\\oghlbrbr..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\willc\\AppData\\Local\\Temp\\oghlbrbr..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+      "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\baydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|solutionrelative:fieldscout\\repositories\\baydivisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BE964801-9453-434F-BF57-277C1F72D495}|FieldScout\\FieldScout.csproj|c:\\users\\willc\\workspace\\csharp\\fieldscout\\fieldscout\\fieldscout\\repositories\\scoutingreportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,7 +47,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 220,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -112,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BayDivisionRepository.cs",
               "DocumentMoniker": "C:\\Users\\willc\\workspace\\csharp\\FieldScout\\FieldScout\\FieldScout\\Repositories\\BayDivisionRepository.cs",
               "RelativeDocumentMoniker": "FieldScout\\Repositories\\BayDivisionRepository.cs",
@@ -137,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SQLQuery1.sql ",
               "DocumentMoniker": "C:\\Users\\willc\\AppData\\Local\\Temp\\oghlbrbr..sql",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\oghlbrbr..sql",

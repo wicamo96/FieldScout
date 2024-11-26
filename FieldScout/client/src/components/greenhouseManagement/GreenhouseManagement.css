@@ -1,11 +1,44 @@
-.cardFix {
-    height: 90vh;
-    background-color: var(--col-5);
+.buttonWSymbol {
+    border: none;
+    background:none;
+}
+
+.cancelButton {
+    background-color: var(--gray-6);
+    width: 5vw;
+    border-radius: 30px;
+}
+
+.cellFix {
+    border-spacing: 10px;
+    border-collapse:separate; 
 }
 
 .center {
     display: flex;
     justify-content: center;
+}
+
+.deleteButton {
+    width: 10vw;
+    border-radius: 30px;
+}
+
+.gmBackground {
+    height: 80vh;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    background-color: var(--green-3);
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.gmText {
+    margin-top: 15%;
+    color: var(--blue-3);
+    font-size: large;
 }
 
 .greenButton {
@@ -22,6 +55,6 @@
     margin-top: 1rem;
 }
 
-.modalColor {
-    background-color: var(--col-3);
+.modalFix {
+    width: 150%;
 }
