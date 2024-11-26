@@ -102,7 +102,7 @@ export const Dashboard = ({ currentUser }) => {
                         <label>
                             <span>Last four growing weeks of data for </span>
                             <select onClick={(e) => setHouseSelection(e.target.value)}>
-                                <option selected disabled>Filter By House</option>
+                                <option selected disabled>Select House</option>
                                 {houseList?.map(house => {
                                     return (
                                         <option value={house.id}>{house.name}</option>

@@ -108,17 +108,18 @@ export const GreenhouseBayDivision = () => {
     return isLoading ?
             <h1>Loading</h1>
         :
-            <>
-                <Card className="cardFix">
-                    <h1>{houseName}, {bayName} Divisions </h1>
+            <main className="background">
+                <article className="gmBackground">
                     <Table>
                         <thead>
                             <tr>
                                 <th>
-                                    Name
+                                    {bayName}
                                 </th>
                                 <th></th>
-                                <th></th>
+                                <th>
+                                    <button className="buttonWSymbol" onClick={toggle}><i class="fa-solid fa-plus"></i></button>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,7 +128,7 @@ export const GreenhouseBayDivision = () => {
                                     <tr>
                                         <td>{division.name}</td>
                                         <td>
-                                            <button onClick={() => toggleEdit(division)}><i className="fa-regular fa-pen-to-square" /></button>
+                                            <button className="buttonWSymbol" onClick={() => toggleEdit(division)}><i className="fa-regular fa-pen-to-square" /></button>
                                             <Modal isOpen={editModal} toggle={() => toggleEdit(division)}>
                                                 <ModalHeader toggle={() => toggleEdit("")}>Edit {title}</ModalHeader>
                                                 <ModalBody>
@@ -141,7 +142,7 @@ export const GreenhouseBayDivision = () => {
                                                     </fieldset>
                                                 </ModalBody>
                                                 <ModalFooter>
-                                                <Button color="primary" onClick={() => {
+                                                <Button className="greenButton" onClick={() => {
                                                     let divisionObject = {
                                                         id: divisionId,
                                                         name: divisionName,
@@ -151,13 +152,13 @@ export const GreenhouseBayDivision = () => {
                                                 }}>
                                                     Submit Edit
                                                 </Button>
-                                                <Button color="secondary" onClick={() => toggleEdit("")}>
+                                                <Button className="cancelButton" onClick={() => toggleEdit("")}>
                                                     Cancel
                                                 </Button>
                                                 </ModalFooter>
                                             </Modal>
                                         </td>
-                                        <td><button onClick={() => toggleDelete(division)}><i className="fa-solid fa-trash" /></button></td>
+                                        <td><button className="buttonWSymbol" onClick={() => toggleDelete(division)}><i className="fa-solid fa-trash" /></button></td>
                                         <Modal isOpen={deleteModal} toggle={() => toggleDelete(division)}>
                                             <ModalHeader toggle={() => toggleDelete("")}>Delete {divisionName}</ModalHeader>
                                             <ModalBody>
@@ -166,12 +167,12 @@ export const GreenhouseBayDivision = () => {
                                                 </div>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="danger" onClick={() => {
+                                            <Button className="deleteButton" color="danger" onClick={() => {
                                                 handleDeleteDivision(divisionId)
                                             }}>
                                                 Confirm Delete
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleDelete("")}>
+                                            <Button className="cancelButton" onClick={() => toggleDelete("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
@@ -182,7 +183,6 @@ export const GreenhouseBayDivision = () => {
                         </tbody>
                     </Table>
                     <div>
-                        <Button className="marginSmall greenButton" onClick={() => toggle()}>Add New Division</Button>
                         <Modal isOpen={modal} toggle={toggle}>
                             <ModalHeader toggle={toggle}>New Bay Division</ModalHeader>
                             <ModalBody>
@@ -196,17 +196,17 @@ export const GreenhouseBayDivision = () => {
                                 </fieldset>
                             </ModalBody>
                             <ModalFooter>
-                            <Button color="primary" onClick={() => handleBayDivisionSubmit()}>
+                            <Button className="greenButton" onClick={() => handleBayDivisionSubmit()}>
                                 Add
                             </Button>
-                            <Button color="secondary" onClick={toggle}>
+                            <Button className="cancelButton" onClick={toggle}>
                                 Cancel
                             </Button>
                             </ModalFooter>
                         </Modal>
                     </div>
-                    <Link className="marginSmall" to={`/greenhouseManagement/${houseId}`}>Return To Bays</Link>
-                </Card>
-            </>
+                    <Link className="marginSmall gmText" to={`/greenhouseManagement/${houseId}`}>Return To Bays</Link>
+                </article>
+            </main>
         
 }

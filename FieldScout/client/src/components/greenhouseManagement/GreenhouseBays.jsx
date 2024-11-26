@@ -93,26 +93,25 @@ export const GreenhouseBays = ({ currentUser }) => {
     return isLoading ?
         <div>Loading</div>
     :
-        <>
-            <Card className="cardFix">
-                <h1>{house.name} Bays</h1>
+        <main className="background">
+            <article className="gmBackground">
                 <Table>
                     <thead>
                         <tr>
                             <th>
-                                Name
+                                {house.name}
                             </th>
                             <th></th>
-                            <th></th>
+                            <th><button className="buttonWSymbol" onClick={toggle}><i class="fa-solid fa-plus"></i></button></th>
                         </tr>
                     </thead>
                     <tbody>
                         {bayList.map(bay => {
                             return (
                                 <tr>
-                                    <td><Link to={`/greenhouseManagement/${id}/${bay.id}`}>{bay.name}</Link></td>
+                                    <td><Link className="gmText" to={`/greenhouseManagement/${id}/${bay.id}`}>{bay.name} Divisions</Link></td>
                                     <td>
-                                        <button onClick={() => toggleEdit(bay)}><i className="fa-regular fa-pen-to-square" /></button>
+                                        <button className="buttonWSymbol" onClick={() => toggleEdit(bay)}><i className="fa-regular fa-pen-to-square" /></button>
                                         <Modal isOpen={editModal} toggle={() => toggleEdit(bay)}>
                                             <ModalHeader toggle={() => toggleEdit("")}>
                                                     Edit {title}
@@ -128,7 +127,7 @@ export const GreenhouseBays = ({ currentUser }) => {
                                                 </fieldset>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="primary" onClick={() => {
+                                            <Button className="greenButton" onClick={() => {
                                                 let bayObj = {
                                                     id: bayId,
                                                     name: bayName
@@ -137,14 +136,14 @@ export const GreenhouseBays = ({ currentUser }) => {
                                             }}>
                                                 Submit Edit
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleEdit("")}>
+                                            <Button className="cancelButton" onClick={() => toggleEdit("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
                                         </Modal>
                                     </td>
                                     <td>
-                                        <button onClick={() => toggleDelete(bay)}><i className="fa-solid fa-trash" /></button>
+                                        <button className="buttonWSymbol" onClick={() => toggleDelete(bay)}><i className="fa-solid fa-trash" /></button>
                                         <Modal isOpen={deleteModal} toggle={() => toggleDelete(bay)}>
                                             <ModalHeader toggle={() => toggleDelete("")}>Delete {bayName}</ModalHeader>
                                             <ModalBody>
@@ -153,12 +152,12 @@ export const GreenhouseBays = ({ currentUser }) => {
                                                 </div>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="danger" onClick={() => {
+                                            <Button className="deleteButton" color="danger" onClick={() => {
                                                 handleDeleteBaySubmit(bayId)
                                             }}>
                                                 Confirm Delete
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleDelete("")}>
+                                            <Button className="cancelButton" onClick={() => toggleDelete("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
@@ -170,7 +169,6 @@ export const GreenhouseBays = ({ currentUser }) => {
                     </tbody>
                 </Table>
                 <div>
-                    <Button className="marginSmall greenButton" onClick={toggle}>Add New Bay</Button>
                     <Modal isOpen={modal} toggle={toggle}>
                         <ModalHeader toggle={() => {
                             toggle()
@@ -189,10 +187,10 @@ export const GreenhouseBays = ({ currentUser }) => {
                             </fieldset>
                         </ModalBody>
                         <ModalFooter>
-                        <Button color="primary" onClick={() => addBayToTables()}>
+                        <Button className="greenButton" onClick={() => addBayToTables()}>
                             Add
                         </Button>
-                        <Button color="secondary" onClick={() => {
+                        <Button className="cancelButton" onClick={() => {
                                                                 toggle()
                                                                 setBayName("")
                                                 }}>
@@ -201,7 +199,7 @@ export const GreenhouseBays = ({ currentUser }) => {
                         </ModalFooter>
                     </Modal>
                 </div>
-                <Link className="marginSmall" to={'/greenhouseManagement'}>Return To Houses</Link>
-            </Card>
-        </>
+                <Link className="marginSmall gmText" to={'/greenhouseManagement'}>Return To Houses</Link>
+            </article>
+        </main>
 }
