@@ -41,6 +41,10 @@
     font-size: large;
 }
 
+.gmText:hover {
+    color: var(--gray-1)
+}
+
 .greenButton {
     background-color: var(--col-1);
     width: 10vw;

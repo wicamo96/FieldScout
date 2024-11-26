@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getByIdWithHouses } from "../../services/FacilityServices.jsx"
 import { Button, Card, Table } from "reactstrap"
 import { Link, useNavigate } from "react-router-dom"
+import "./Scouting.css"
 
 export const ScoutingHouseList = ({ currentUser }) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -19,25 +20,24 @@ export const ScoutingHouseList = ({ currentUser }) => {
     return isLoading ?
         <div>Loading</div>
     :
-        <>
-            <Card className="cardFix">
-                <h1>Select House To Add Scouting Data</h1>
+        <main className="background">
+            <article className="gmBackground">
                 <Table>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th><h3>Select House To Add Scouting Data</h3></th>
                         </tr>
                     </thead>
                     <tbody>
                         {houses?.map(house => {
                             return (
                                 <tr>
-                                    <td><Button className="greenButton" onClick={() => navigate(`/scouting/${house.id}`, {state: { houseObj: house }})}>{house.name}</Button></td>
+                                    <td><Button className="buttonWSymbol text" onClick={() => navigate(`/scouting/${house.id}`, {state: { houseObj: house }})}>{house.name}</Button></td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </Table>
-            </Card>
-        </>
+            </article>
+        </main>
 }
