@@ -18,6 +18,33 @@
   --col-4: #FDFDFD;
   --col-5: #C8BEA0;
 
+  --gray-1: #f8f9fa;
+  --gray-2: #e9ecef;
+  --gray-3: #dee2e6;
+  --gray-4: #ced4da;
+  --gray-5: #adb5bd;
+  --gray-6: #6c757d;
+  --gray-7: #495057;
+  --gray-8: #495057;
+  --gray-9: #343a40;
+  --gray-10: #212529;
+
+  --green-1: #FDFDFD;
+  --green-2: #E1E7E0;
+  --green-3: #C8D2C5;
+  --green-4: #ACBCA8;
+  --green-5: #93A78D;
+  --green-6: #799272;
+  --green-7: #5D7C54;
+  --green-8: #426637;
+  --green-9: #28511C;
+
+  --blue-1: #B5CFE5;
+  --blue-2: #90B6D9;
+  --blue-3: #6DA0CD;
+  --blue-4: #537A9C;
+  --blue-5: #375067;
+
 }
 
 a {

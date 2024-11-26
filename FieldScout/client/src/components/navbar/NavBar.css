@@ -6,6 +6,16 @@
 .navFix {
     padding: 1rem;
     width: 100vw;
-    height: 5rem;
-    background-color: var(--col-4);
+    height: 10vh;
+    background-color: var(--gray-3);
+}
+
+.navText {
+    color: var(--green-9);
+    font-size: large;
+}
+
+.navBrand {
+    color: var(--green-9);
+    font-size: x-large;
 }
