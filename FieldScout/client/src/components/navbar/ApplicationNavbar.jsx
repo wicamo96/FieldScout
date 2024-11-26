@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Navbar,
   NavbarBrand,
   Nav,
   NavItem,
   NavLink,
-  NavbarText
+  NavbarText,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
 import './NavBar.css'
 import { useNavigate } from 'react-router-dom';
 
 export const ApplicationNavbar = () => {
     const navigate = useNavigate()
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggle = () => setIsOpen(!isOpen)
     
     return (
         <div>
@@ -33,11 +40,23 @@ export const ApplicationNavbar = () => {
                         Scouting
                     </NavLink>
                 </NavItem>
-                <NavItem>
-                    <NavLink href="/trends">
+                <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
                         Trends
-                    </NavLink>
-                </NavItem>
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                        <DropdownItem>
+                            <NavLink href="/trends">
+                                Graph Visualization
+                            </NavLink>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <NavLink href="/map">
+                                Heat Map
+                            </NavLink>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
                 <NavItem>
                     <NavLink href="/login" onClick={() => {
                                                 localStorage.removeItem("fieldScout_user")
@@ -46,13 +65,6 @@ export const ApplicationNavbar = () => {
                     </NavLink>
                 </NavItem>
             </Nav>
-            {/* <NavbarText>
-                <button onClick={() => {
-                                localStorage.removeItem("fieldScout_user")
-                                navigate("/login")}}>
-                    Log Out
-                </button>
-            </NavbarText> */}
         </Navbar>
         </div>
     )

@@ -30,6 +30,17 @@ namespace FieldScout.Controllers
             return Ok(reports);
         }
 
+        [HttpGet("GetGrowingWeeksByHouseId/{houseId}")]
+        public IActionResult GetGrowingWeeksByHouseId(int houseId)
+        {
+            var growingWeeks = _scoutingReportRepository.GetGrowingWeeksByHouseId(houseId);
+            if (growingWeeks == null)
+            {
+                return NotFound();
+            }
+            return Ok(growingWeeks);
+        }
+
         // GET api/<ScoutingReportController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)

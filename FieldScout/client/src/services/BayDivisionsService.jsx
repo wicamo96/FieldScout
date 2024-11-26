@@ -29,3 +29,7 @@ export const deleteBayDivision = (divisionId) => {
         method: "DELETE"
     })
 }
+
+export const getBayDivisionsByHouseIdWithScoutingReport = (houseId, growingWeek, pestId) => {
+    return fetch(`${baseUrl}/GetBDByHouseIdWithScoutingReport/${houseId}/${growingWeek}/${pestId}`).then(res => res.json())
+}

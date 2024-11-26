@@ -10,6 +10,8 @@ import { ScoutingHouseList } from "../components/scouting/ScoutingHouseList.jsx"
 import { ScoutingBays } from "../components/scouting/ScoutingBays.jsx"
 import { TrendsHouseList } from "../components/trends/TrendsHouseList.jsx"
 import { HouseTrends } from "../components/trends/HouseTrends.jsx"
+import { FacilityMap } from "../components/heatMap/FacilityMap.jsx"
+import { HeatMap } from "../components/heatMap/HeatMap.jsx"
 
 export const ApplicationViews = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -49,6 +51,10 @@ export const ApplicationViews = () => {
                 <Route path="trends">
                     <Route index element={<TrendsHouseList currentUser={currentUser} />} />
                     <Route path=":thId" element={<HouseTrends currentUser={currentUser} />} />
+                </Route>
+                <Route path="map">
+                    <Route index element={<FacilityMap currentUser={currentUser} />} />
+                    <Route path=":hhId" element={<HeatMap currentUser={currentUser} />} />
                 </Route>
             </Route>
         </Routes>

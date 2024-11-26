@@ -122,5 +122,84 @@ namespace FieldScout.Repositories
                 }
             }
         }
+
+        public List<BayDivisions> GetByHouseIdWithScoutingReport(int houseId, int growingWeek, int pestId) 
+        { 
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    if (growingWeek != 0 && pestId != 0)
+                    {
+                        cmd.CommandText += @"SELECT h.Name AS HouseName, hb.HouseId, hb.BayId AS BayId, hb.Id AS HouseBayId, b.Name AS BayName, bd.Id AS BayDivisionId, bd.Name AS BayDivisionName,         sr.Pressure 
+                                            FROM HouseBays hb
+                                            LEFT JOIN Bays b ON b.Id = hb.BayId
+                                            LEFT JOIN BayDivisions bd ON bd.BayId = b.Id
+                                            LEFT JOIN Houses h ON h.Id = hb.HouseId
+                                            LEFT JOIN ScoutingReport sr ON sr.BayDivisionId = bd.Id
+                                            WHERE hb.HouseId = @HouseId AND sr.GrowingWeek = @GrowingWeek AND sr.PestId = @PestId";
+
+
+                        DbUtils.AddParameter(cmd, "GrowingWeek", growingWeek);
+                        DbUtils.AddParameter(cmd, "PestId", pestId);
+                    }
+                    else
+                    {
+                        cmd.CommandText += @"SELECT DISTINCT h.Name AS HouseName, hb.HouseId, hb.BayId AS BayId, hb.Id AS HouseBayId, b.Name AS BayName, bd.Id AS BayDivisionId, bd.Name AS BayDivisionName
+                                            FROM HouseBays hb
+                                            LEFT JOIN Bays b ON b.Id = hb.BayId
+                                            LEFT JOIN BayDivisions bd ON bd.BayId = b.Id
+                                            LEFT JOIN Houses h ON h.Id = hb.HouseId
+                                            LEFT JOIN ScoutingReport sr ON sr.BayDivisionId = bd.Id
+                                            WHERE hb.HouseId = @HouseId";
+                    }
+
+                    DbUtils.AddParameter(cmd, "HouseId", houseId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    List<BayDivisions> divisions = new List<BayDivisions>();
+
+                    while (reader.Read())
+                    {
+                        var division = new BayDivisions()
+                        {
+                            Id = DbUtils.GetInt(reader, "BayDivisionId"),
+                            Name = DbUtils.GetString(reader, "BayDivisionName"),
+                            BayId = DbUtils.GetInt(reader, "BayId"),
+                            HouseBay = new HouseBays()
+                            {
+                                HouseId = DbUtils.GetInt(reader, "HouseId"),
+                                BayId = DbUtils.GetInt(reader, "BayId"),
+                                Id = DbUtils.GetInt(reader, "HouseBayId")
+                            },
+                            Bay = new Bays()
+                            {
+                                Name = DbUtils.GetString(reader, "BayName"),
+                                Id = DbUtils.GetInt(reader, "BayId")
+                            },
+                            House = new Houses()
+                            {
+                                Name = DbUtils.GetString(reader, "HouseName")
+                            }
+                        };
+
+                        if (growingWeek != 0 && pestId != 0)
+                        {
+                            division.ScoutingReport = new ScoutingReport()
+                            {
+                                Pressure = DbUtils.GetString(reader, "Pressure")
+                            };
+                        }
+                        divisions.Add(division);
+                    }
+
+                    reader.Close();
+
+                    return divisions;
+                }
+            }
+        }
     }
 }
