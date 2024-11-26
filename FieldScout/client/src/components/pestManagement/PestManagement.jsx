@@ -104,7 +104,7 @@ export const PestManagement = () => {
                                                 </fieldset>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="primary" onClick={() => {
+                                            <Button className="greenButton" onClick={() => {
                                                 let pestObject = {
                                                     id: pestId,
                                                     name: pestName
@@ -113,7 +113,7 @@ export const PestManagement = () => {
                                             }}>
                                                 Submit Edit
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleEdit("")}>
+                                            <Button className="cancelButton" onClick={() => toggleEdit("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
@@ -129,12 +129,12 @@ export const PestManagement = () => {
                                                 </div>
                                             </ModalBody>
                                             <ModalFooter>
-                                            <Button color="danger" onClick={() => {
+                                            <Button className="deleteButton" color="danger" onClick={() => {
                                                 handleDeletePestSubmit(pestId)
                                             }}>
                                                 Confirm Delete
                                             </Button>
-                                            <Button color="secondary" onClick={() => toggleDelete("")}>
+                                            <Button className="cancelButton" onClick={() => toggleDelete("")}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
@@ -159,10 +159,10 @@ export const PestManagement = () => {
                             </fieldset>
                         </ModalBody>
                         <ModalFooter>
-                        <Button color="primary" onClick={() => handleAddPest()}>
+                        <Button className="greenButton" onClick={() => handleAddPest()}>
                             Add
                         </Button>
-                        <Button color="secondary" onClick={toggle}>
+                        <Button className="cancelButton" onClick={toggle}>
                             Cancel
                         </Button>
                         </ModalFooter>

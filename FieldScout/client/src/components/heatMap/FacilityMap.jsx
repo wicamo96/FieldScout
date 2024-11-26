@@ -16,7 +16,7 @@ export const FacilityMap = ({ currentUser }) => {
 
     useEffect(() => {
         const w = 1000
-        const h = 600
+        const h = window.innerHeight * 0.6
         const svg = d3.select(svgRef.current)
                       .attr("width", w)
                       .attr("height", h)
@@ -49,10 +49,12 @@ export const FacilityMap = ({ currentUser }) => {
     }, [houses])
 
     return (
-        <>
-            <h2>{facility.name} Facility View</h2>
-            <h5>Select a house to view its heat map</h5>
-            <svg ref={svgRef} />  
-        </>
+        <main className="background">
+            <article className="gmBackground">
+                <h2>{facility.name} Facility View</h2>
+                <h5>Select a house to view its heat map</h5>
+                <svg ref={svgRef} />  
+            </article>
+        </main>
     )
 }
