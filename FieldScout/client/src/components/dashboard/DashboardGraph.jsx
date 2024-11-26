@@ -67,11 +67,11 @@ export const DashboardGraph = ({ pest, houseId, currentUser, growingWeek }) => {
 
     useEffect(() => {
         const w = 500
-        const h = 400
+        const h = window.innerHeight * 0.5
         const svg = d3.select(svgRef.current)
                       .attr("width", w)
                       .attr("height", h)
-                      .style('background', '#d3d3d3')
+                      .style('background', '#f8f9fa')
                       .style('overflow', 'visible')
 
         const xScale = d3.scaleLinear()
@@ -120,6 +120,8 @@ export const DashboardGraph = ({ pest, houseId, currentUser, growingWeek }) => {
            .attr("text-anchor", "middle")
            .attr("x", w / 2)
            .attr("y", h + 40)
+           .attr('font-family', 'sans-serif')
+           .style('font-size', 'large')
            .text("Growing Week")
 
         svg.append("text")
@@ -128,6 +130,8 @@ export const DashboardGraph = ({ pest, houseId, currentUser, growingWeek }) => {
             .attr("transform", "rotate(-90)")
            .attr("x", -200)
            .attr("y", (-40))
+           .attr('font-family', 'sans-serif')
+           .style('font-size', 'large')
            .text("Pressure")
 
         svg.select(".graph-title").remove()
@@ -136,14 +140,13 @@ export const DashboardGraph = ({ pest, houseId, currentUser, growingWeek }) => {
            .attr("text-anchor", "middle")
            .attr("x", w / 2)
            .attr("y", -10)
+           .attr('font-family', 'sans-serif')
+           .style('font-size', 'x-large')
            .text(`${pest?.name}`)
 
     }, [parsedData, pressureData, pest?.id])
 
     return (
-    // isLoading ?
-    // <></>
-    // :
     <>
         <svg ref={svgRef}>
             <g className="x-axis" />

@@ -23,42 +23,42 @@ export const ApplicationNavbar = () => {
     return (
         <div>
         <Navbar className="navFix" container='fluid'>
-            <NavbarBrand href="/">Field Scout</NavbarBrand>
+            <NavbarBrand className='navBrand' href="/">Field Scout</NavbarBrand>
             <Nav className="ml-auto">
                 <NavItem>
-                    <NavLink href="/greenhouseManagement">
+                    <NavLink className='navText' href="/greenhouseManagement">
                         Greenhouse Management
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/pests">
+                    <NavLink className='navText' href="/pests">
                         Pest Management
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/scouting">
+                    <NavLink className='navText' href="/scouting">
                         Scouting
                     </NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle nav caret>
+                    <DropdownToggle className='navText' nav caret>
                         Trends
                     </DropdownToggle>
                     <DropdownMenu right>
                         <DropdownItem>
-                            <NavLink href="/trends">
+                            <NavLink className='navDropdownText' href="/trends">
                                 Graph Visualization
                             </NavLink>
                         </DropdownItem>
                         <DropdownItem>
-                            <NavLink href="/map">
+                            <NavLink className='navDropdownText' href="/map">
                                 Heat Map
                             </NavLink>
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
                 <NavItem>
-                    <NavLink href="/login" onClick={() => {
+                    <NavLink className='navText' href="/login" onClick={() => {
                                                 localStorage.removeItem("fieldScout_user")
                     }}>
                         Log Out
