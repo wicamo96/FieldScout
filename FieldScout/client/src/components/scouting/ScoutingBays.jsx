@@ -176,16 +176,16 @@ export const ScoutingBays = ({ currentUser }) => {
     return isLoading ?
         <div>loading</div>
     :
-        <>
-            <Card className="cardFix">
-                <h1>{house.name} Scouting Menu</h1>
+        <main className="background">
+            <article className="gmBackground">
+                <h3>{house.name} Scouting Menu</h3>
                 <Table>
                     <thead>
                         <tr>
-                            <th>Bay</th>
-                            <th>Add Data</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -301,18 +301,18 @@ export const ScoutingBays = ({ currentUser }) => {
                                             </ModalBody>
                                             <ModalFooter>
                                             {!bayIdsWithScoutingData[0]?.id ? 
-                                                <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
+                                                <Button className="greenButton" onClick={() => handleSubmitScoutingReport()}>
                                                     Add
                                                 </Button>
                                             : 
                                             bayIdsWithScoutingData.find(entry => entry.id === bayObj.id) ? 
                                             "" 
                                             :
-                                                <Button color="primary" onClick={() => handleSubmitScoutingReport()}>
+                                                <Button className="greenButton" onClick={() => handleSubmitScoutingReport()}>
                                                     Add
                                                 </Button>
                                             }
-                                            <Button color="secondary" onClick={() => toggle()}>
+                                            <Button className="cancelButton" onClick={() => toggle()}>
                                                 Cancel
                                             </Button>
                                             </ModalFooter>
@@ -376,13 +376,13 @@ export const ScoutingBays = ({ currentUser }) => {
                                             </ModalBody>
                                             <ModalFooter>
                                                 {scoutingReport[0]?.id ? 
-                                                    <Button color="warning"  onClick={() => handleSubmitEditedScoutingReport()}>
+                                                    <Button className="greenButton"  onClick={() => handleSubmitEditedScoutingReport()}>
                                                         Submit Edit
                                                     </Button>
                                                 :
                                                 ""    
                                                 }
-                                                <Button color="secondary" onClick={() => toggleEdit()}>
+                                                <Button className="cancelButton" onClick={() => toggleEdit()}>
                                                     Cancel
                                                 </Button>
                                             </ModalFooter>
@@ -400,10 +400,10 @@ export const ScoutingBays = ({ currentUser }) => {
                                                 Are you sure you want to delete week {growingWeek} scouting data for {bayObj.name}?
                                                 </ModalBody>
                                                 <ModalFooter>
-                                                    <Button color="danger" onClick={() => handleSubmitDeleteScoutingReport()}>
+                                                    <Button className="deleteButton" color="danger" onClick={() => handleSubmitDeleteScoutingReport()}>
                                                         Confirm Delete
                                                     </Button>
-                                                    <Button color="secondary" onClick={() => toggleDelete()}>
+                                                    <Button className="cancelButton" onClick={() => toggleDelete()}>
                                                         Cancel
                                                     </Button>
                                                 </ModalFooter>
@@ -414,7 +414,7 @@ export const ScoutingBays = ({ currentUser }) => {
                                                 No Data To Delete!
                                                 </ModalBody>
                                                 <ModalFooter>
-                                                    <Button color="secondary" onClick={() => toggleDelete()}>
+                                                    <Button className="cancelButton" onClick={() => toggleDelete()}>
                                                         Cancel
                                                     </Button>
                                                 </ModalFooter>
@@ -427,7 +427,7 @@ export const ScoutingBays = ({ currentUser }) => {
                         })}
                     </tbody>
                 </Table>
-                <Link to={'/scouting'}>Return To House List</Link>
-            </Card>
-        </>
+                <Link className="gmText" to={'/scouting'}>Return To House List</Link>
+            </article>
+        </main>
 }

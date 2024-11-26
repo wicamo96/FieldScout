@@ -1,0 +1,8 @@
+.text {
+    color: var(--blue-3);
+    font-size: large;
+}
+
+.text:hover {
+    background-color: var(--green-3);
+}
