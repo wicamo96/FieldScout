@@ -10,6 +10,8 @@
 
 .greenButton {
     background-color: var(--col-1);
+    width: 10vw;
+    border-radius: 30px;
 }
 
 .margin {
