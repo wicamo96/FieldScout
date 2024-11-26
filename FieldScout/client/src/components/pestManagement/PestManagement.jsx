@@ -70,17 +70,18 @@ export const PestManagement = () => {
     return isLoading ?
         <h1>Loading</h1>
     :
-        <>
-            <Card className="cardFix">
-                <h2 className="margin">Pests</h2>
-                <Table className="margin">
+        <main className="background">
+            <article className="gmBackground">
+                <Table>
                     <thead>
                         <tr>
                             <th>
-                                Name
+                                Pests
                             </th>
                             <th></th>
-                            <th></th>
+                            <th>
+                                <button className="buttonWSymbol" onClick={toggle}><i class="fa-solid fa-plus"></i></button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,7 +90,7 @@ export const PestManagement = () => {
                                 <tr>
                                     <td>{pest.name}</td>
                                     <td>
-                                        <button onClick={() => toggleEdit(pest)}><i className="fa-regular fa-pen-to-square"></i></button>
+                                        <button className="buttonWSymbol" onClick={() => toggleEdit(pest)}><i className="fa-regular fa-pen-to-square"></i></button>
                                         <Modal isOpen={editModal} toggle={() => toggleEdit(pest)}>
                                             <ModalHeader toggle={() => toggleEdit("")}>Edit {title}</ModalHeader>
                                             <ModalBody>
@@ -119,7 +120,7 @@ export const PestManagement = () => {
                                         </Modal>
                                     </td>
                                     <td>
-                                        <button onClick={() => toggleDelete(pest)}><i className="fa-solid fa-trash" /></button>
+                                        <button className="buttonWSymbol" onClick={() => toggleDelete(pest)}><i className="fa-solid fa-trash" /></button>
                                         <Modal isOpen={deleteModal} toggle={() => toggleDelete(pest)}>
                                             <ModalHeader toggle={() => toggleDelete("")}>Delete {pestName}</ModalHeader>
                                             <ModalBody>
@@ -145,9 +146,6 @@ export const PestManagement = () => {
                     </tbody>
                 </Table>
                 <div>
-                    <Button className="margin greenButton" onClick={() => toggle()}>
-                        Add New Pest
-                    </Button>
                     <Modal isOpen={modal} toggle={toggle}>
                         <ModalHeader toggle={toggle}>New Pest</ModalHeader>
                         <ModalBody>
@@ -170,6 +168,6 @@ export const PestManagement = () => {
                         </ModalFooter>
                     </Modal>
                 </div>
-            </Card>
-        </>
+            </article>
+        </main>
 }

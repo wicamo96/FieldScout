@@ -58,14 +58,8 @@ export const GreenhouseBayDivision = () => {
             getBayById(bayId).then(bayObj => {
                 setBayName(bayObj.name)
             })
-        })
+        }).then(setIsLoading(false))
     }, [houseId, bayId])
-
-    useEffect(() => {
-        if (houseName != undefined || bayName != undefined || bayDivisions[0]?.id != undefined) {
-            setIsLoading(false)
-        }
-    }, [bayDivisions, houseName, bayName])
 
     const getBayDivisionsList = () => {
         getBayDivisionsByBayId(bayId).then(divArr => {
