@@ -1,7 +1,20 @@
+.dashboardBackground {
+    height: 85vh;
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    background-color: var(--green-3);
+}
+
 .cardSize { 
     height: 500px;
     width: 700px;
     background-color: var(--col-5);
+}
+
+.carousel {
+    height: 67vh;
 }
 
 .center {
@@ -13,13 +26,18 @@
     padding: 1rem;
 }
 
+.sizeUp {
+    padding-top: 6vh;
+    height: 70vh;
+}
+
 .smallCard {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    width: 30%;
-    background-color: var(--col-1);
+    height: 20vh;
+    width: 90vw;
+    border-radius: 50px 50px 0px 0px;
+    background-color: var(--green-7);
     color: var(--col-4)
 }
 

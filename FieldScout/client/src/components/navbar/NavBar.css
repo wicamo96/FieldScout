@@ -1,3 +1,8 @@
+.navBrand {
+    color: var(--green-9);
+    font-size: x-large;
+}
+
 .navFlex {
     display: flex;
     justify-content: flex-start; 
@@ -7,7 +12,7 @@
     padding: 1rem;
     width: 100vw;
     height: 10vh;
-    background-color: var(--gray-3);
+    background-color: var(--gray-2);
 }
 
 .navText {
@@ -15,7 +20,7 @@
     font-size: large;
 }
 
-.navBrand {
+.navDropdownText {
     color: var(--green-9);
-    font-size: x-large;
+    font-size: medium;
 }
