@@ -27,6 +27,8 @@ export const HeatMap = ({ currentUser }) => {
     }, [hhId])
 
     useEffect(() => {
+        if (!house.id) return
+
         getPests().then(res => setPests(res)).then(getGrowingWeeksByHouseId(house.id).then(res => setGrowingWeeks(res)))
     }, [house])
 
@@ -35,45 +37,62 @@ export const HeatMap = ({ currentUser }) => {
     }, [growingWeeks])
 
     useEffect(() => {
+        if (!bayDivisionsWithScoutingReport.length) return
+
+        
         const w = 1000
         const h = 600
-
+        
         const svg = d3.select(svgRef.current)
                       .attr("width", w)
                       .attr("height", h)
                       .style("overflow", "visible")
 
+        svg.selectAll("rect").remove()
+        svg.selectAll("text").remove()
         
-        if (bayDivisionsWithScoutingReport) {
+        
+        if (bayDivisionsWithScoutingReport[0]) {
             svg.selectAll("rect")
-               .data(bayDivisionsWithScoutingReport)
-               .enter()
-               .append("rect")
-               .attr("x", (d,i) => {
-                    if (i % 2 === 0) {
-                        return i * (w / bayDivisionsWithScoutingReport.length / 2)
-                    } else {
-                        return (i - 1) * (w / bayDivisionsWithScoutingReport.length / 2)
+                .data(bayDivisionsWithScoutingReport)
+                .enter()
+                .append("rect")
+                .attr("x", (d,i) => {
+                        if (i % 2 === 0) {
+                            return i * (w / bayDivisionsWithScoutingReport.length / 2)
+                        } else {
+                            return (i - 1) * (w / bayDivisionsWithScoutingReport.length / 2)
+                        }
+                    })
+                .attr("y", (d, i) => {
+                        if (i % 2 === 0) {
+                            return 0
+                        } else {
+                            return h / 2
+                        }
+                })
+                .attr("width", (w / bayDivisionsWithScoutingReport.length) - 5)
+                .attr("height", h / 2)
+                .attr("fill", (d, i) => {
+                    
+                    switch(d.scoutingReport?.pressure) {
+                        case undefined:
+                            return "gray"
+                        case "1":
+                            return "green"
+                        case "2":
+                            return "yellow"
+                        case "3":
+                            return "red"
                     }
                 })
-               .attr("y", (d, i) => {
-                    if (i % 2 === 0) {
-                        return 0
-                    } else {
-                        return h / 2
-                    }
-               })
-               .attr("width", (w / bayDivisionsWithScoutingReport.length) - 5)
-               .attr("height", h / 2)
-               .attr("fill", "gray")
 
             svg.selectAll("text")
                .data(bayDivisionsWithScoutingReport)
                .enter()
                .append("text")
                .attr("x", (d, i) => {
-                    if (i % 2 === 0) {
-                        return (i / 2) * (w / bayDivisionsWithScoutingReport.length) + (((w / bayDivisionsWithScoutingReport.length) - 5) / 2)
+                    if (i % 2 === 0) {                       return (i / 2) * (w / bayDivisionsWithScoutingReport.length) + (((w / bayDivisionsWithScoutingReport.length) - 5) / 2)
                     } else {
                         return ((i - 1) / 2) * (w / bayDivisionsWithScoutingReport.length) + (((w / bayDivisionsWithScoutingReport.length) - 5) / 2)
                     }
@@ -86,7 +105,7 @@ export const HeatMap = ({ currentUser }) => {
                     }
                })
                .attr("text-anchor", "middle")
-               .attr("fill", "white")
+               .attr("fill", "black")
                .text(d => d.name)
 
             svg.selectAll("text.bay-label")
@@ -114,14 +133,16 @@ export const HeatMap = ({ currentUser }) => {
                
         }
 
-        svg.exit().remove()
     }, [bayDivisionsWithScoutingReport])
+ 
 
     const toggle = () => setModal(!modal)
 
     const handleHeatMapSearch = () => {
         if (!heatMapSearch.growingWeek || !heatMapSearch.pest) {
             toggle()
+        } else {
+            getBayDivisionsByHouseIdWithScoutingReport(hhId, heatMapSearch.growingWeek, heatMapSearch.pest).then(res => setBayDivisionsWithScoutingReport(res))
         }
     }
 
@@ -136,7 +157,7 @@ export const HeatMap = ({ currentUser }) => {
                     <th>
                         <select onChange={(e) => {
                             let copy = {...heatMapSearch}
-                            copy.pest = e.target.value
+                            copy.pest = parseInt(e.target.value)
                             setHeatMapSearch(copy)
                         }}>
                             <option>Select Pest</option>
@@ -150,7 +171,7 @@ export const HeatMap = ({ currentUser }) => {
                     <th>
                         <select onChange={(e) => {
                             let copy = {...heatMapSearch}
-                            copy.growingWeek = e.target.value
+                            copy.growingWeek = parseInt(e.target.value)
                             setHeatMapSearch(copy)
                         }}>
                             <option>Select Growing Week</option>
@@ -179,6 +200,6 @@ export const HeatMap = ({ currentUser }) => {
                 </tr>
             </thead>
         </Table>
-        <svg className="marginBottom" ref={svgRef} />
+        <svg className="marginBottom" ref={svgRef}></svg>
     </>
 }

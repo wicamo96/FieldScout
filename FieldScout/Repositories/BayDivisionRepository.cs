@@ -130,11 +130,9 @@ namespace FieldScout.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT h.Name AS HouseName, hb.HouseId, hb.BayId AS BayId, hb.Id AS HouseBayId, b.Name AS BayName, bd.Id AS BayDivisionId, bd.Name AS BayDivisionName";
-
                     if (growingWeek != 0 && pestId != 0)
                     {
-                        cmd.CommandText += @", sr.Pressure 
+                        cmd.CommandText += @"SELECT h.Name AS HouseName, hb.HouseId, hb.BayId AS BayId, hb.Id AS HouseBayId, b.Name AS BayName, bd.Id AS BayDivisionId, bd.Name AS BayDivisionName,         sr.Pressure 
                                             FROM HouseBays hb
                                             LEFT JOIN Bays b ON b.Id = hb.BayId
                                             LEFT JOIN BayDivisions bd ON bd.BayId = b.Id
@@ -148,7 +146,8 @@ namespace FieldScout.Repositories
                     }
                     else
                     {
-                        cmd.CommandText += @"FROM HouseBays hb
+                        cmd.CommandText += @"SELECT DISTINCT h.Name AS HouseName, hb.HouseId, hb.BayId AS BayId, hb.Id AS HouseBayId, b.Name AS BayName, bd.Id AS BayDivisionId, bd.Name AS BayDivisionName
+                                            FROM HouseBays hb
                                             LEFT JOIN Bays b ON b.Id = hb.BayId
                                             LEFT JOIN BayDivisions bd ON bd.BayId = b.Id
                                             LEFT JOIN Houses h ON h.Id = hb.HouseId
@@ -164,7 +163,7 @@ namespace FieldScout.Repositories
 
                     while (reader.Read())
                     {
-                        divisions.Add(new BayDivisions()
+                        var division = new BayDivisions()
                         {
                             Id = DbUtils.GetInt(reader, "BayDivisionId"),
                             Name = DbUtils.GetString(reader, "BayDivisionName"),
@@ -183,12 +182,17 @@ namespace FieldScout.Repositories
                             House = new Houses()
                             {
                                 Name = DbUtils.GetString(reader, "HouseName")
-                            },
-                            ScoutingReport = new ScoutingReport()
+                            }
+                        };
+
+                        if (growingWeek != 0 && pestId != 0)
+                        {
+                            division.ScoutingReport = new ScoutingReport()
                             {
                                 Pressure = DbUtils.GetString(reader, "Pressure")
-                            }
-                        });
+                            };
+                        }
+                        divisions.Add(division);
                     }
 
                     reader.Close();
