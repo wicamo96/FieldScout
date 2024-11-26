@@ -41,7 +41,7 @@ export const HeatMap = ({ currentUser }) => {
 
         
         const w = 1000
-        const h = 600
+        const h = window.innerHeight * 0.6
         
         const svg = d3.select(svgRef.current)
                       .attr("width", w)
@@ -149,57 +149,59 @@ export const HeatMap = ({ currentUser }) => {
     return isLoading ? 
     <h1>Loading</h1>
     :
-    <>
-        <h2>{house.name}</h2>
-        <Table>
-            <thead>
-                <tr>
-                    <th>
-                        <select onChange={(e) => {
-                            let copy = {...heatMapSearch}
-                            copy.pest = parseInt(e.target.value)
-                            setHeatMapSearch(copy)
-                        }}>
-                            <option>Select Pest</option>
-                            {pests.map(pest => {
-                                return (
-                                    <option value={pest.id}>{pest.name}</option>
-                                )
-                            })}
-                        </select>
-                    </th>
-                    <th>
-                        <select onChange={(e) => {
-                            let copy = {...heatMapSearch}
-                            copy.growingWeek = parseInt(e.target.value)
-                            setHeatMapSearch(copy)
-                        }}>
-                            <option>Select Growing Week</option>
-                            {growingWeeks.length > 0 ? growingWeeks.map(week => {
-                                return (
-                                    <option key={week} value={week}>{week}</option>
-                                )
-                            })
-                            :
-                            <option>No Growing Weeks Exist</option>
-                            }
-                        </select>
-                    </th>
-                    <th>
-                        <Button onClick={handleHeatMapSearch}>Search</Button>
-                        <Modal isOpen={modal} toggle={toggle}>
-                            <ModalHeader toggle={toggle}>Error!</ModalHeader>
-                            <ModalBody>
-                                You must select a pest and growing week before searching
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="primary" onClick={toggle}>Close</Button>
-                            </ModalFooter>
-                        </Modal>
-                    </th>
-                </tr>
-            </thead>
-        </Table>
-        <svg className="marginBottom" ref={svgRef}></svg>
-    </>
+    <main className="background">
+        <article className="gmBackground">
+            <h2>{house.name}</h2>
+            <Table>
+                <thead>
+                    <tr>
+                        <th>
+                            <select onChange={(e) => {
+                                let copy = {...heatMapSearch}
+                                copy.pest = parseInt(e.target.value)
+                                setHeatMapSearch(copy)
+                            }}>
+                                <option>Select Pest</option>
+                                {pests.map(pest => {
+                                    return (
+                                        <option value={pest.id}>{pest.name}</option>
+                                    )
+                                })}
+                            </select>
+                        </th>
+                        <th>
+                            <select onChange={(e) => {
+                                let copy = {...heatMapSearch}
+                                copy.growingWeek = parseInt(e.target.value)
+                                setHeatMapSearch(copy)
+                            }}>
+                                <option>Select Growing Week</option>
+                                {growingWeeks.length > 0 ? growingWeeks.map(week => {
+                                    return (
+                                        <option key={week} value={week}>{week}</option>
+                                    )
+                                })
+                                :
+                                <option>No Growing Weeks Exist</option>
+                                }
+                            </select>
+                        </th>
+                        <th>
+                            <Button className="greenButton" onClick={handleHeatMapSearch}>Search</Button>
+                            <Modal isOpen={modal} toggle={toggle}>
+                                <ModalHeader toggle={toggle}>Error!</ModalHeader>
+                                <ModalBody>
+                                    You must select a pest and growing week before searching
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onClick={toggle}>Close</Button>
+                                </ModalFooter>
+                            </Modal>
+                        </th>
+                    </tr>
+                </thead>
+            </Table>
+            <svg className="marginBottom" ref={svgRef}></svg>
+        </article>
+    </main>
 }

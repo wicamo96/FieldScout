@@ -18,26 +18,24 @@ export const TrendsHouseList = ({ currentUser }) => {
     return isLoading ? 
         <div>Loading</div>
     :
-        <>
-            <Card className="cardFix">
-                <h1>Select House To View Pest Trends</h1>
+        <main className="background">
+            <article className="gmBackground">
                 <Table>
                     <thead>
                         <tr>
-                            <td>Name</td>
+                            <td><h3>Select House To View Pest Trends</h3></td>
                         </tr>
                     </thead>
                     <tbody>
                         {houses?.map(house => {
                             return (
                                 <tr>
-                                    <td><Button className="greenButton" onClick={() => navigate(`/trends/${house.id}`, { state: { houseObj: house }})}>{house.name}</Button></td>
+                                    <td><Button className="buttonWSymbol text" onClick={() => navigate(`/trends/${house.id}`, { state: { houseObj: house }})}>{house.name}</Button></td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </Table>
-            </Card>
-        </>
-    
+            </article>
+        </main>
 }
