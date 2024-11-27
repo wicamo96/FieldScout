@@ -89,5 +89,5 @@ The **Trends** dropdown also allows you to visualize data with a heat map via **
 ![Heat Map](https://github.com/user-attachments/assets/9caa7079-935a-4e7a-92b2-de20170b808e)
 Once you select a house, you'll be given a view of the bays and divisions within the house and the option to filter by pest and growing week.
 
-![Heat Map With Filters](https://github.com/user-attachments/assets/eaf6e76a-82b9-41d7-9f91-11e50f331fd0)
+![Heat Map With Filters](https://github.com/user-attachments/assets/084aa05c-2e7a-44b0-9de3-46bd11e301c3)
 Once the filters are selected, the heat map will update with a gradient based on the pest pressure from the week selected. 
