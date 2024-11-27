@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { addBay, deleteBay, editBay, getBaysByHouseId } from "../../services/BayServices.jsx"
 import { getHouseById } from "../../services/HousesService.jsx"
 import { Button, Card, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap"
@@ -17,6 +17,8 @@ export const GreenhouseBays = ({ currentUser }) => {
     const [bayName, setBayName] = useState("")
     const [bayId, setBayId] = useState(0)
     const [title, setTitle] = useState("")
+
+    const navigate = useNavigate()
 
     const toggle = () => {
         setBayName("")
@@ -109,7 +111,9 @@ export const GreenhouseBays = ({ currentUser }) => {
                         {bayList.map(bay => {
                             return (
                                 <tr>
-                                    <td><Link className="gmText" to={`/greenhouseManagement/${id}/${bay.id}`}>{bay.name} Divisions</Link></td>
+                                    <td>
+                                        <Button className="buttonWSymbol text" onClick={() => navigate(`/greenhouseManagement/${id}/${bay.id}`, { state: { bayName: bay.name }})}>{bay.name} Divisions</Button>
+                                    </td>
                                     <td>
                                         <button className="buttonWSymbol" onClick={() => toggleEdit(bay)}><i className="fa-regular fa-pen-to-square" /></button>
                                         <Modal isOpen={editModal} toggle={() => toggleEdit(bay)}>
