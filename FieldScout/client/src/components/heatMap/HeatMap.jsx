@@ -59,9 +59,9 @@ export const HeatMap = ({ currentUser }) => {
                 .append("rect")
                 .attr("x", (d,i) => {
                         if (i % 2 === 0) {
-                            return i * (w / bayDivisionsWithScoutingReport.length / 2)
+                            return i * (w / bayDivisionsWithScoutingReport.length)
                         } else {
-                            return (i - 1) * (w / bayDivisionsWithScoutingReport.length / 2)
+                            return (i - 1) * (w / bayDivisionsWithScoutingReport.length)
                         }
                     })
                 .attr("y", (d, i) => {
@@ -71,7 +71,7 @@ export const HeatMap = ({ currentUser }) => {
                             return h / 2
                         }
                 })
-                .attr("width", (w / bayDivisionsWithScoutingReport.length) - 5)
+                .attr("width", (w / (bayDivisionsWithScoutingReport.length / 2)) - 5)
                 .attr("height", h / 2)
                 .attr("fill", (d, i) => {
                     
@@ -92,9 +92,10 @@ export const HeatMap = ({ currentUser }) => {
                .enter()
                .append("text")
                .attr("x", (d, i) => {
-                    if (i % 2 === 0) {                       return (i / 2) * (w / bayDivisionsWithScoutingReport.length) + (((w / bayDivisionsWithScoutingReport.length) - 5) / 2)
+                    if (i % 2 === 0) {                       
+                        return (i / 2) * (w / (bayDivisionsWithScoutingReport.length / 2)) + (((w / (bayDivisionsWithScoutingReport.length / 2)) - 5) / 2)
                     } else {
-                        return ((i - 1) / 2) * (w / bayDivisionsWithScoutingReport.length) + (((w / bayDivisionsWithScoutingReport.length) - 5) / 2)
+                        return ((i - 1) / 2) * (w / (bayDivisionsWithScoutingReport.length / 2)) + (((w / (bayDivisionsWithScoutingReport.length / 2)) - 5) / 2)
                     }
                })
                .attr("y", (d, i) => {
@@ -115,9 +116,9 @@ export const HeatMap = ({ currentUser }) => {
                .attr("class", "bay-label")
                .attr("x", (d, i) => {
                 if (i % 2 === 0) {
-                    return ((i / 2) * (w / bayDivisionsWithScoutingReport.length) + (((w / bayDivisionsWithScoutingReport.length) - 5) / 2))
+                    return ((i / 2) * (w / (bayDivisionsWithScoutingReport.length / 2)) + (((w / (bayDivisionsWithScoutingReport.length / 2)) - 5) / 2))
                 } else {
-                    return (((i - 1) / 2) * (w / bayDivisionsWithScoutingReport.length) + (((w / bayDivisionsWithScoutingReport.length) - 5) / 2))
+                    return (((i - 1) / 2) * (w / (bayDivisionsWithScoutingReport.length / 2)) + (((w / (bayDivisionsWithScoutingReport.length / 2)) - 5) / 2))
                 }
                })
                .attr("y", (d, i) => {

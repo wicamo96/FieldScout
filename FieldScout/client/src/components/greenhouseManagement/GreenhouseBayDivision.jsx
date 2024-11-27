@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import { addBayDivision, deleteBayDivision, editBayDivision, getBayDivisionsByBayId } from "../../services/BayDivisionsService.jsx"
 import { getHouseById } from "../../services/HousesService.jsx"
 import { getBayById } from "../../services/BayServices.jsx"
@@ -22,6 +22,8 @@ export const GreenhouseBayDivision = () => {
 
     const { id } = useParams()
     const { bId } = useParams()
+    const location = useLocation()
+    const state = location.state
 
     const toggle = () => {
         setDivisionName("")
@@ -58,8 +60,16 @@ export const GreenhouseBayDivision = () => {
             getBayById(bayId).then(bayObj => {
                 setBayName(bayObj.name)
             })
-        }).then(setIsLoading(false))
+        })
     }, [houseId, bayId])
+
+    useEffect(() => {
+        if (bayName === "") {
+            return
+        } else {
+            setIsLoading(false)
+        }
+    }, [bayName])
 
     const getBayDivisionsList = () => {
         getBayDivisionsByBayId(bayId).then(divArr => {
@@ -108,7 +118,7 @@ export const GreenhouseBayDivision = () => {
                         <thead>
                             <tr>
                                 <th>
-                                    {bayName}
+                                    {state.bayName}
                                 </th>
                                 <th></th>
                                 <th>
@@ -185,7 +195,7 @@ export const GreenhouseBayDivision = () => {
                                         type="text"
                                         value={divisionName}
                                         onChange={(e) => setDivisionName(e.target.value)}
-                                        placeholder="Divsion Name"
+                                        placeholder="Division Name"
                                     />
                                 </fieldset>
                             </ModalBody>
