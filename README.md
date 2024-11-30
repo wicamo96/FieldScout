@@ -9,6 +9,7 @@ This was an interesting way to dig into a problem faced in one of my previous ro
 learn the fundamentals of D3.js independently.
 
 ## Video Demo
+https://www.youtube.com/watch?v=easKpVlcA9w&ab_channel=WillMoran
 
 ## Installation Instructions
 1. Clone Repository
